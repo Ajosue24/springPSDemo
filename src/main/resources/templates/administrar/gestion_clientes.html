@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Programa</title>
+    <!-- Bootstrap -->
+    <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="../../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- Ion.RangeSlider -->
+    <link href="../../vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="../../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="../../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <!-- Bootstrap Colorpicker -->
+    <link href="../../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+    <link href="../../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../../build/css/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/gestion_clientes.css}"
+          href="../../css/gestion_clientes.css"/>
+</head>
+<body>
+
+<div layout:fragment="content" class="container mySpace">
+
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Administre Clientes</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!--inicio Formulario-->
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Agregar / Editar Cliente
+                                <small>Añada o consulte los clientes</small>
+                            </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- <br/>-->
+                            <div class="col-md-10 col-md-offset-1">
+                                <!--/*@thymesVar id="clienteForm" type="com.example.demo.entity.administrar.Clientes"*/-->
+                            <form id="clienteForm" class="form-horizontal form-label-left"
+                                 action="#" th:action="@{/gestionClientes/guardarCliente}" th:object="${clienteForm}"
+                                 method="post" th:fragment="clienteFormfrag">
+                                <input type="hidden" th:id="clienteId" th:field="*{clienteId}" />
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                    <label th:for="desPais">Pais<span
+                                            class="required">*</span></label>
+                                    <input type="text" class="form-control" th:id="desPais"
+                                           th:field="*{idPais.nombrePais}" placeholder="Ingrese Pais">
+                                    <input type="hidden" th:id="idPais" th:field="*{idPais.idPais}" />
+                                </div>
+                                <div class="col-md-3 col-sm-12 col-xs-12 form-group" id="cmbIdTipoPais">
+                                    <label th:for="idTipoPais">Tipo de identificacion:<span
+                                            class="required">*</span>
+                                    </label>
+                                    <select th:field="*{idTipoPais}" class="form-control">
+                                        <option th:fragment="models" th:each="model : ${models}"
+                                                th:value="${model.idTipoPais}" th:text="${model.descripcionId}"/>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                    <label th:for="numeroIdentificacionCliente">Numero de identificacion<span
+                                            class="required">*</span></label>
+                                    <input type="text" class="form-control" placeholder="123456789"
+                                           th:id="numeroIdentificacionCliente" th:name="numeroIdentificacionCliente" th:field="*{numeroIdentificacionCliente}">
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label th:for="txtRazonSocial">Razon social<span
+                                            class="required">*</span></label>
+                                    <input type="text" required="required" class="form-control" th:id="txtRazonSocial"
+                                           th:field="*{razonSocial}"/>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label th:for="nombreComercial">Nombre Comercial <span class="required">*</span>
+                                    </label>
+                                    <input type="text" required="required" class="form-control" th:id="nombreComercial"
+                                           th:field="*{nombreComercial}">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <label th:for="desDepartamento">Departamento/Estado<span
+                                            class="required">*</span>
+                                    </label>
+
+                                        <select th:field="*{idDepartamento}" required="required" class="form-control">
+                                            <option th:fragment="models2" th:each="model : ${models2}"
+                                                    th:value="${model.idDepartamento}"
+                                                    th:text="${model.descripcionDepartamento}"/>
+                                        </select>
+                                    </div>
+
+                                    <!---->
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <label th:for="txtCiudad">Ciudad<span class="required">*</span> </label>
+                                        <select th:field="*{idCiudad}"  class="form-control">
+                                            <option th:fragment="models2" th:each="model : ${models3}"
+                                                    th:value="${model.idCiudad}" th:text="${model.descripcionCiudad}"/>
+                                        </select>
+                                </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label th:for="direccionCliente">Direccion <span class="required">*</span>
+                                    </label>
+                                    <textarea class="resizable_textarea form-control" rows="1"
+                                              placeholder="Direccion exacta cliente" th:id="direccionCliente"
+                                              th:field="*{direccionCliente}"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        <label class="control-label" th:for="telefonoCliente">Telefono Cliente<span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   data-inputmask="'mask' : '(999) 999-9999'" th:id="telefonoCliente"
+                                                   th:field="*{telefonoCliente}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        <label class="control-label" th:for="telefonoAlternativo">Telefono Alternativo
+                                        </label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   data-inputmask="'mask' : '(999) 999-9999'"
+                                                   th:id="telefonoAlternativo"
+                                                   th:field="*{telefonoAlternativo}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        <label class="control-label" th:for="correoCliente">Correo<span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="form-group">
+                                            <input class="form-control" type="email" th:id="correoCliente" name="email"
+                                                   th:field="*{correoCliente}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                        <label class="control-label" th:for="telefonoAlternativo">Correo
+                                            Alternativo</label>
+                                        <div class="form-group">
+                                            <input class="form-control" type="email" id="correoAlternativo" name="correoAlternativo"
+                                                   th:field="*{correoAlternativo}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <label th:for="txtUsuarioDirector">Usuario Director<span
+                                            class="required">*</span>
+                                    </label>
+                                    <input class="form-control" type="text" th:id="usuarioDirector" th:field="*{usuarioDirector}">
+                                </div>
+
+                                <!---->
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                        <label th:for="txtUsuarioCalidad">Usuario Calidad<span
+                                                class="required">*</span>
+                                        </label>
+                                        <input class="form-control" th:id="usuarioCalidad" type="text" th:field="*{usuarioCalidad}">
+                                    </div>
+                            </div>
+                                <div class="form-group">
+                                    <div class="col-md-10 col-sm-10 col-xs-12 ">
+                                        <label>
+                                            <input type="checkbox" class="js-switch" checked th:id="estadoCliente"
+                                                   th:field="*{estadoCliente}"/> Desactivar / Activar Cliente
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button th:type="submit" th:id="cancel" class="btn btn-primary" type="reset"
+                                                th:name="action" th:value="cancel">Cancelar
+                                        </button>
+                                        <button th:type="submit" th:id="save" class="btn btn-success" th:name="action"
+                                                th:value="save">Guardar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                        </div>
+                    <!--tabla para consultar existentes-->
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Lista Clientes<small>Tabla con Clientes Registrados</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <p class="text-muted font-13 m-b-30">
+                                Seleccione el cliente que desea editar
+                            </p>
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Numero ID</th>
+                                    <th>Razon Social</th>
+                                    <th>Nombre Comercial</th>
+                                    <th>Pais</th>
+                                    <th>Departamento</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Editar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="clientes : ${listaClientes}" >
+
+                                    <!--/*@thymesVar id="clientes" type="com.example.demo.entity.administrar.Clientes"*/-->
+                                    <td th:text="${clientes.numeroIdentificacionCliente}"></td>
+                                    <td th:text="${clientes.razonSocial}"></td>
+                                    <td th:text="${clientes.nombreComercial}"></td>
+                                    <td th:text="${clientes.idPais.nombrePais}"></td>
+                                    <td th:text="${clientes.idDepartamento.descripcionDepartamento}"></td>
+                                    <td th:text="${clientes.correoCliente}"></td>
+                                    <td th:text="${clientes.telefonoCliente}"></td>
+                                    <td>
+                                        <a th:href="@{/gestionClientes/editarCliente/} + ${clientes.clienteId}" class="btn btn-round btn-info btn-xs"><i class="fa fa-wrench"></i> Editar </a></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--fin tabla para consultar existentes-->
+                <div th:replace="parametricas/modal_filtrar_usuario :: modal-filtrar-usuario"/>
+                <script src="../../js/gestion_clientes.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
