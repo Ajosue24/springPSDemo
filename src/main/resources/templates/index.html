@@ -13,12 +13,20 @@
         <!-- top tiles -->
         <div class="row tile_count">
             <div class="col-md-10 col-sm-10 col-xs-10 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i>Hola, Administrador</span>
+
+                <!--<div sec:authorize="${hasRole(T(com.example.demo.controller.security.RolesAccess).devolverRol('vista1'))}">
+                    CUALQUIER ROLL
+                </div>-->
+
+                <span class="count_top"><i class="fa fa-user"></i>Hola,<span sec:authentication="name">Usuario</span></span>
                 <div class="count">Bienvenido</div>
             </div>
 
         </div>
     </div>
+</div>
+<div  layout:fragment="customjs">
+    <script src="../../js/index.js"></script>
 </div>
 </body>
 </html>
