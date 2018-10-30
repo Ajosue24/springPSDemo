@@ -1,4 +1,4 @@
-package com.proasecal.ProasecalApp;
+package com.proasecal.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
