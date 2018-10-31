@@ -28,10 +28,6 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-/*
-    @Autowired
-    private UsuarioService usuarioService;*/
-
     @Autowired
     DataSource dataSource;
 

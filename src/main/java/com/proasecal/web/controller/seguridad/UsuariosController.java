@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/usuariosC")
+@RequestMapping(value="/usuarios")
 public class UsuariosController {
     //TODO:add LOGS
 
@@ -43,7 +43,7 @@ public class UsuariosController {
     }
 
 
-    @RequestMapping(value="/guardarUsuario",method= RequestMethod.POST )
+    @RequestMapping(value="/save",method= RequestMethod.POST )
     public ModelAndView guardarUsuario(@ModelAttribute("usuariosForm") Usuarios usuariosForm){
         usuariosForm.setPassword(new BCryptPasswordEncoder().encode(usuariosForm.getPassword()));
             usuarioService.save(usuariosForm);
@@ -51,7 +51,7 @@ public class UsuariosController {
     }
 
     //editar
-    @RequestMapping(value="/updateUsuario/{id}",method=RequestMethod.GET )
+    @RequestMapping(value="/update/{id}",method=RequestMethod.GET )
     public ModelAndView editArticle(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("security/usuarios_admin");
         Usuarios user= usuarioService.get(id);
