@@ -57,11 +57,24 @@ public class Usuarios {
     @Column(name = "v_correo")
     private String correo;
 
-
-
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="ROLES_X_USUARIOS", joinColumns=@JoinColumn(name="id_usuarios_sistema"), inverseJoinColumns=@JoinColumn(name="id_roles"))
     private Set<Roles> rolesList;
+    
+    
+    public Usuarios() {}
+    
+    public Usuarios(Usuarios usuario) {
+    	this.nombreUsuario = usuario.getNombreUsuario();
+    	this.password = usuario.getPassword();
+    	this.nombres = usuario.getNombres();
+    	this.apellidos = usuario.getApellidos();
+    	this.estado  = usuario.getEstado();
+    	this.fechaCreacion = usuario.getFechaCreacion();
+    	this.codProasecal = usuario.getCodProasecal();
+    	this.correo = usuario.getCorreo();
+    	this.rolesList = usuario.getRolesList();
+    }
 
     public long getIdUsuario() {
         return idUsuario;

@@ -32,7 +32,7 @@ public class UsuariosController {
         ModelAndView modelAndView = new ModelAndView("security/usuarios_admin");
         List<Roles> listaRoles = rolService.obtenerListaRoles();
         List<String> lista = Arrays.asList("LOCO","otra cosa","otro rol");
-        List<Usuarios>listaUsuarios = usuarioService.obtenerListaUsuarios();
+        List<Usuarios>listaUsuarios = usuarioService.list();
         modelAndView.addObject("usuariosForm", new Usuarios());
         modelAndView.addObject("listaUsuarios", listaUsuarios);
         modelAndView.addObject("listaRoles", listaRoles);
@@ -46,7 +46,7 @@ public class UsuariosController {
     @RequestMapping(value="/guardarUsuario",method= RequestMethod.POST )
     public ModelAndView guardarUsuario(@ModelAttribute("usuariosForm") Usuarios usuariosForm){
         usuariosForm.setPassword(new BCryptPasswordEncoder().encode(usuariosForm.getPassword()));
-            usuarioService.guardarUsuario(usuariosForm);
+            usuarioService.save(usuariosForm);
         return new ModelAndView("redirect:/usuariosC/");
     }
 
@@ -54,8 +54,8 @@ public class UsuariosController {
     @RequestMapping(value="/updateUsuario/{id}",method=RequestMethod.GET )
     public ModelAndView editArticle(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("security/usuarios_admin");
-        Usuarios user= usuarioService.obtenerUsuario(id);
-        List<Usuarios> listaUsuarios = usuarioService.obtenerListaUsuarios();
+        Usuarios user= usuarioService.get(id);
+        List<Usuarios> listaUsuarios = usuarioService.list();
         List<Roles> listaRoles = rolService.obtenerListaRoles();
         modelAndView.addObject("listaUsuarios", listaUsuarios);
         modelAndView.addObject("listaRoles", listaRoles);

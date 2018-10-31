@@ -18,14 +18,14 @@ public class UsuarioService {
 
 
 
-    public List<Usuarios> obtenerListaUsuarios(){
+    public List<Usuarios> list(){
         return (List<Usuarios>)usuariosRepository.findAll();
     }
 
-    public Usuarios obtenerUsuario(Long id){
+    public Usuarios get(Long id){
         return usuariosRepository.findById(id).get();
     }
-    public void guardarUsuario(Usuarios usuarios){
+    public void save(Usuarios usuarios){
         usuariosRepository.save(usuarios);
     }
 }
