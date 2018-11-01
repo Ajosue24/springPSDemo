@@ -27,7 +27,7 @@ public class UsuariosController {
     @Autowired
     UsuarioService usuarioService;
 
-    @RequestMapping(value="/",method= RequestMethod.GET )
+    @RequestMapping(method= RequestMethod.GET )
     public ModelAndView main(){
         ModelAndView modelAndView = new ModelAndView("security/usuarios_admin");
         List<Roles> listaRoles = rolService.obtenerListaRoles();
@@ -47,7 +47,7 @@ public class UsuariosController {
     public ModelAndView guardarUsuario(@ModelAttribute("usuariosForm") Usuarios usuariosForm){
         usuariosForm.setPassword(new BCryptPasswordEncoder().encode(usuariosForm.getPassword()));
             usuarioService.save(usuariosForm);
-        return new ModelAndView("redirect:/usuariosC/");
+        return new ModelAndView("redirect:/usuarios");
     }
 
     //editar
