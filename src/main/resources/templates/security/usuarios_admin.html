@@ -57,6 +57,8 @@
 												<input type="text" id="nombreUsuario" name="nombreUsuario"
 													required="required" class="form-control col-md-7 col-xs-12"
 													th:field="*{nombreUsuario}" />
+												<p th:if="${#fields.hasErrors('nombreUsuario')}"
+												   class="label label-danger" th:errors="*{nombreUsuario}">Incorrect</p>
 											</div>
 										</div>
 										<div class="form-group">
@@ -91,13 +93,14 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="codProasecal">Codigo Proasecal<span
-												class="required">*</span>
+												for="codProasecal">Codigo Proasecal
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="codProasecal" name="codProasecal"
-													required="required" class="form-control col-md-7 col-xs-12"
+												<input type="number" id="codProasecal" name="codProasecal"
+													 class="form-control col-md-7 col-xs-12"
 													th:field="*{codProasecal}" />
+												<p th:if="${#fields.hasErrors('codProasecal')}"
+												   class="label label-danger" th:errors="*{codProasecal}">Incorrect</p>
 											</div>
 										</div>
 										<div class="form-group">
@@ -229,6 +232,31 @@
 		</div>
 	</div>
 	<div layout:fragment="customjs">
+
+		<!-- Datatables -->
+		<link href="../../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+		<link href="../../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+		<link href="../../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+		<link href="../../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+		<link href="../../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+		<!-- Datatables -->
+		<script src="../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="../../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="../../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script src="../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="../../vendors/jszip/dist/jszip.min.js"></script>
+		<script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
+		<script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
+
 		<link rel="stylesheet" type="text/css"
 			href="../../css/dragg/multi-select.css">
 		<script src="../../js/usuarios_admin.js"></script>

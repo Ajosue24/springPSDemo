@@ -1,7 +1,9 @@
 package com.proasecal.web.bootstrap;
 
 import com.proasecal.web.cache.CacheAtrib;
+import com.proasecal.web.entity.seguridad.Roles;
 import com.proasecal.web.entity.seguridad.Usuarios;
+import com.proasecal.web.service.seguridad.RolService;
 import com.proasecal.web.service.seguridad.UsuarioService;
 
 import org.slf4j.Logger;
@@ -23,6 +25,9 @@ public class Bootstrap implements InitializingBean {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private RolService rolService;
+
 
     /**
      *
@@ -33,11 +38,12 @@ public class Bootstrap implements InitializingBean {
         LOG.info("obtener roles y accesos a url");
         cacheAtrib.setTextoPrueba("texto");
         
-        LOG.info("Creandi uaurio admin");
-        //this.createUser();
+        /*LOG.info("Creandi uaurio admin");
+        this.createUserAndRol();*/
     }
     
-    public void createUser() {
+    public void createUserAndRol() {
+
     	Usuarios user = new Usuarios();
     	
     	user.setNombres("Administrador");

@@ -28,10 +28,9 @@ public class Roles {
     private long idRoles;
 
 
-    @Column(name="v_nombre_rol")
+    @Column(name="v_nombre_rol",unique=true)
     @NotNull
     private String nombreRol;
-
 
     @Column(name="v_descripcion")
     private String descripcion;

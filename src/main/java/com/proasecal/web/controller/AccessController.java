@@ -1,5 +1,6 @@
 package com.proasecal.web.controller;
 
+import com.proasecal.web.service.seguridad.PermisoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -29,7 +30,6 @@ public class AccessController {
     }
     @PostMapping("/index")
     public ModelAndView postIndex() {
-        //Aqui valido a los caraeCornflakes
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("rol","ADMIN");
         return modelAndView;
@@ -37,7 +37,6 @@ public class AccessController {
     @GetMapping("/login")
     public ModelAndView login(@RequestParam(value = "logout", required = false) String logout) {
         ModelAndView model = new ModelAndView();
-        Usuarios usuario = this.usuarioService.get(1L);
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
@@ -65,8 +64,6 @@ public class AccessController {
         return "index";
 
     }
-
-
 
 
 }
