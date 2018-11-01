@@ -27,7 +27,7 @@ public class Usuarios {
     @GeneratedValue(generator = "usuarioGenerator")
     private long idUsuario;
 
-    @Column(name = "v_usuario")
+    @Column(name = "v_usuario",unique=true)
     @NotNull
     private String nombreUsuario;
 
@@ -60,20 +60,20 @@ public class Usuarios {
     @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="ROLES_X_USUARIOS", joinColumns=@JoinColumn(name="id_usuarios_sistema"), inverseJoinColumns=@JoinColumn(name="id_roles"))
     private Set<Roles> rolesList;
-    
-    
+
+
     public Usuarios() {}
-    
+
     public Usuarios(Usuarios usuario) {
-    	this.nombreUsuario = usuario.getNombreUsuario();
-    	this.password = usuario.getPassword();
-    	this.nombres = usuario.getNombres();
-    	this.apellidos = usuario.getApellidos();
-    	this.estado  = usuario.getEstado();
-    	this.fechaCreacion = usuario.getFechaCreacion();
-    	this.codProasecal = usuario.getCodProasecal();
-    	this.correo = usuario.getCorreo();
-    	this.rolesList = usuario.getRolesList();
+        this.nombreUsuario = usuario.getNombreUsuario();
+        this.password = usuario.getPassword();
+        this.nombres = usuario.getNombres();
+        this.apellidos = usuario.getApellidos();
+        this.estado  = usuario.getEstado();
+        this.fechaCreacion = usuario.getFechaCreacion();
+        this.codProasecal = usuario.getCodProasecal();
+        this.correo = usuario.getCorreo();
+        this.rolesList = usuario.getRolesList();
     }
 
     public long getIdUsuario() {

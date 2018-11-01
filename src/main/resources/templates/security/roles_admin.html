@@ -34,7 +34,7 @@
                             <div class="x_content">
                                 <br/>
                                 <form id="rolesAdminForm" class="form-horizontal form-label-left" action="#"
-                                      th:action="@{/rolesC/guardarRol}" th:object="${rolesForm}"
+                                      th:action="@{/roles/guardarRol}" th:object="${rolesForm}"
                                       method="post">
 
                                     <div class="form-group">
@@ -46,14 +46,15 @@
                                             <input type="text" id="nombreRol" name="nombreRol"
                                                    required="required" class="form-control col-md-7 col-xs-12"
                                                    th:field="*{nombreRol}"/>
+                                            <p th:if="${#fields.hasErrors('nombreRol')}"
+                                               class="label label-danger" th:errors="*{nombreRol}">Incorrect</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">descripcion<span
-                                                class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">descripcion
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="descripcion" name="password"
+                                            <input type="text" id="descripcion" name="descripcion"
                                                    class="form-control col-md-7 col-xs-12" th:field="*{descripcion}"/>
                                         </div>
                                     </div>
@@ -116,7 +117,7 @@
                                         <td th:text="${listaRoles.descripcion}"></td>
                                         <td th:text="${listaRoles.estado}"></td>
                                         <td>
-                                            <a th:href="@{/rolesC/updateRoles/} + ${listaRoles.idRoles}" class="btn btn-round btn-info btn-xs"><i class="fa fa-wrench"></i> Editar </a></td>
+                                            <a th:href="@{/roles/updateRoles/} + ${listaRoles.idRoles}" class="btn btn-round btn-info btn-xs"><i class="fa fa-wrench"></i> Editar </a></td>
                                     </tr>
 
                                     </tbody>
@@ -131,14 +132,30 @@
     </div>
 </div>
 <div layout:fragment="customjs">
-    <link rel="stylesheet" type="text/css" href="../../css/dragg/multi-select.css">
-    <script src="../../js/usuarios_admin.js"></script>
-    <link href="../../css/usuarios_admin.css" rel="stylesheet">
-    <script src="../../js/dragg/jquery.multi-select.js"></script>
-    <script type="text/javascript">
-        // run pre selected options
-        $('#pre-selected-options').multiSelect();
-    </script>
+
+    <!-- Datatables -->
+    <link href="../../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Datatables -->
+    <script src="../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
 </div>
 </body>
 </html>

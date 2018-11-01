@@ -10,7 +10,9 @@
                         <li><a href="index3.html">Dashboard3</a></li>
                     </ul>-->
                 </li>
-                <li><a><i class="fa fa-eyedropper"></i> Administrar / Gestionar <span class="fa fa-chevron-down"></span></a>
+
+                <li sec:authorize="${hasRole(T(com.proasecal.web.controller.seguridad.RolesAccess).devolverRolParaModulo('ADMINISTRAR'))}">
+                    <a><i class="fa fa-eyedropper"></i> Administrar / Gestionar <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li> <a th:href="@{/gestionClientes/}">Clientes</a></a></li>
                         <li><a th:href="@{/vista1/}">laboratorios</a></li>
@@ -65,7 +67,7 @@
                 </li>-->
             </ul>
         </div>
-        <div class="menu_section">
+        <div class="menu_section" sec:authorize="${hasRole(T(com.proasecal.web.controller.seguridad.RolesAccess).devolverRolParaModulo('CONFIGURACION'))}">
             <h3>Administracion</h3>
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-bug"></i> Configuracion <span class="fa fa-chevron-down"></span></a>
@@ -73,9 +75,9 @@
                         <!-- <li><a href="#">Configuracion General</a></li>
                          <li><a href="#">Contacts</a></li>-->
                         <li><a th:href="@{/usuarios/}">Usuarios y sus Roles</a></li>
-                        <li><a th:href="@{/rolesC/}">Roles</a></li>
+                        <li><a th:href="@{/roles/}">Roles</a></li>
                         <li><a th:href="@{/pemisosRoles/}">Gestion Accesos</a></li>
-                        <li><a th:href="@{/logout}">Salir</a></li>
+                        <li><a th:href="@{/login}">Salir</a></li>
                     </ul>
                 </li>
             </ul>
