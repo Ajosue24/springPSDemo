@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,15 +37,21 @@ public class Permisos {
     @NotNull
     private String url;
 
-
+//DEPENDENCIAS
     @ManyToOne
     @JoinColumn(name = "id_modulos")
     private Modulos idModulos;
 
-
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="ROLES_PERMISOS", joinColumns=@JoinColumn(name="id_permisos"), inverseJoinColumns=@JoinColumn(name="id_roles"))
     private Set<Roles> listRoles;
+
+    @ManyToOne
+    @JoinColumn(name = "id_permisos_dependiente")
+    private Permisos permisos;
+
+    @OneToMany(mappedBy = "idPermisos", fetch = FetchType.EAGER)
+    private List<Permisos> permisosList;
 
     public long getIdPermisos() {
         return idPermisos;
@@ -92,5 +99,21 @@ public class Permisos {
 
     public void setListRoles(Set<Roles> listRoles) {
         this.listRoles = listRoles;
+    }
+
+    public Permisos getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(Permisos permisos) {
+        this.permisos = permisos;
+    }
+
+    public List<Permisos> getPermisosList() {
+        return permisosList;
+    }
+
+    public void setPermisosList(List<Permisos> permisosList) {
+        this.permisosList = permisosList;
     }
 }

@@ -49,6 +49,9 @@ public class Roles {
     @ManyToMany(mappedBy = "listRoles")
     private List<Permisos> permisosList = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "rolesList")
+    private List<Modulos> modulosList = new ArrayList<>();
+
     public long getIdRoles() {
         return idRoles;
     }
@@ -96,5 +99,13 @@ public class Roles {
 
     public void setPermisosList(List<Permisos> permisosList) {
         this.permisosList = permisosList;
+    }
+
+    public List<Usuarios> getUsuariosList() {
+        return usuariosList;
+    }
+
+    public void setUsuariosList(List<Usuarios> usuariosList) {
+        this.usuariosList = usuariosList;
     }
 }

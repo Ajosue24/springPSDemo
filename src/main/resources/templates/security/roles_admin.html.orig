@@ -1,0 +1,290 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>roles</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container mySpace">
+    <div class="right_col" role="main">
+        <!-- top tiles -->
+        <div class="row tile_count">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Administrador Roles</h3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!--inicio Formulario-->
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Agregar / Editar Roles
+                                    <small>Administrar Roles</small>
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <form id="addGastosForm" class="form-horizontal form-label-left" action="#"
+                                      th:action="@{/rolesC/guardarRol}" th:object="${rolesForm}"
+                                      method="post">
+
+                                    <div class="form-group">
+                                        <input th:type="hidden" th:field="*{idRoles}"/>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombreRol">Nombre
+                                            Rol<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nombreRol" name="nombreRol"
+                                                   required="required" class="form-control col-md-7 col-xs-12"
+                                                   th:field="*{nombreRol}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">descripcion<span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="descripcion" name="password"
+                                                   class="form-control col-md-7 col-xs-12" th:field="*{descripcion}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Habilitado
+                                        </label>
+                                        <p>
+                                            Si:
+                                            <input type="radio" class="flat" name="estado" id="estadoT" value="true"
+                                                   th:checked="*{estado}" required/> No:
+                                            <input type="radio" class="flat" name="estado" id="estadoF" value="false"
+                                                   th:checked="*{estado} == false"/>
+                                        </p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                            <button th:type="submit" th:id="cancel" class="btn btn-primary" type="reset"
+                                                    th:name="action" th:value="cancel">Cancel
+                                            </button>
+                                            <button th:type="submit" th:id="save" class="btn btn-success"
+                                                    th:name="action" th:value="save">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--Fin Formulario-->
+                        <!--Tabla Ya registrados-->
+
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Roles<small>Edite o consulte Roles Existentes</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <p class="text-muted font-13 m-b-30">
+                                    Seleccione el rol que desee editar
+                                </p>
+
+                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Rol</th>
+                                        <th>descripcion</th>
+                                        <th>Estado</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="listaRoles : ${listaRoles}" >
+                                        <td th:text="${listaRoles.nombreRol}"></td>
+                                        <td th:text="${listaRoles.descripcion}"></td>
+                                        <td th:text="${listaRoles.estado}"></td>
+                                        <td>
+                                            <a th:href="@{/rolesC/updateRoles/} + ${listaRoles.idRoles}" class="btn btn-round btn-info btn-xs"><i class="fa fa-wrench"></i> Editar </a></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Fin Tabla Ya registrados-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout:fragment="customjs">
+    <link rel="stylesheet" type="text/css" href="../../css/dragg/multi-select.css">
+    <script src="../../js/usuarios_admin.js"></script>
+    <link href="../../css/usuarios_admin.css" rel="stylesheet">
+    <script src="../../js/dragg/jquery.multi-select.js"></script>
+    <script type="text/javascript">
+        // run pre selected options
+        $('#pre-selected-options').multiSelect();
+    </script>
+</div>
+</body>
+=======
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>roles</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container mySpace">
+    <div class="right_col" role="main">
+        <!-- top tiles -->
+        <div class="row tile_count">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Administrador Roles</h3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!--inicio Formulario-->
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Agregar / Editar Roles
+                                    <small>Administrar Roles</small>
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <form id="rolesAdminForm" class="form-horizontal form-label-left" action="#"
+                                      th:action="@{/rolesC/guardarRol}" th:object="${rolesForm}"
+                                      method="post">
+
+                                    <div class="form-group">
+                                        <input th:type="hidden" th:field="*{idRoles}"/>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombreRol">Nombre
+                                            Rol<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nombreRol" name="nombreRol"
+                                                   required="required" class="form-control col-md-7 col-xs-12"
+                                                   th:field="*{nombreRol}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">descripcion<span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="descripcion" name="password"
+                                                   class="form-control col-md-7 col-xs-12" th:field="*{descripcion}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Habilitado
+                                        </label>
+                                        <p>
+                                            Si:
+                                            <input type="radio" class="flat" name="estado" id="estadoT" value="true"
+                                                   th:checked="*{estado}" required/> No:
+                                            <input type="radio" class="flat" name="estado" id="estadoF" value="false"
+                                                   th:checked="*{estado} == false"/>
+                                        </p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                            <button th:type="submit" th:id="cancel" class="btn btn-primary" type="reset"
+                                                    th:name="action" th:value="cancel">Cancel
+                                            </button>
+                                            <button th:type="submit" th:id="save" class="btn btn-success"
+                                                    th:name="action" th:value="save">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--Fin Formulario-->
+                        <!--Tabla Ya registrados-->
+
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Roles<small>Edite o consulte Roles Existentes</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <p class="text-muted font-13 m-b-30">
+                                    Seleccione el rol que desee editar
+                                </p>
+
+                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Rol</th>
+                                        <th>descripcion</th>
+                                        <th>Estado</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="listaRoles : ${listaRoles}" >
+                                        <td th:text="${listaRoles.nombreRol}"></td>
+                                        <td th:text="${listaRoles.descripcion}"></td>
+                                        <td th:text="${listaRoles.estado}"></td>
+                                        <td>
+                                            <a th:href="@{/rolesC/updateRoles/} + ${listaRoles.idRoles}" class="btn btn-round btn-info btn-xs"><i class="fa fa-wrench"></i> Editar </a></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Fin Tabla Ya registrados-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout:fragment="customjs">
+    <link rel="stylesheet" type="text/css" href="../../css/dragg/multi-select.css">
+    <script src="../../js/usuarios_admin.js"></script>
+    <link href="../../css/usuarios_admin.css" rel="stylesheet">
+    <script src="../../js/dragg/jquery.multi-select.js"></script>
+    <script type="text/javascript">
+        // run pre selected options
+        $('#pre-selected-options').multiSelect();
+    </script>
+</div>
+</body>
+>>>>>>> ae3a49469c415a965658ab152ca5a11f31675269
+</html>

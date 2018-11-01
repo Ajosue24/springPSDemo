@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "MODULOS")
@@ -37,7 +38,14 @@ public class Modulos {
 
     //uno a muchos con la tabla permisos
     @OneToMany(mappedBy = "idModulos", fetch = FetchType.EAGER)
-    private List<Modulos> modulosList;
+    private List<Permisos> permisosList;
+
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="MODULOS_X_ROLES", joinColumns=@JoinColumn(name="id_modulos"), inverseJoinColumns=@JoinColumn(name="id_roles"))
+    private Set<Roles> rolesList;
+
+
 
     public long getIdModulos() {
         return idModulos;
@@ -63,5 +71,19 @@ public class Modulos {
         this.descripcion = descripcion;
     }
 
+    public List<Permisos> getPermisosList() {
+        return permisosList;
+    }
 
+    public void setPermisosList(List<Permisos> permisosList) {
+        this.permisosList = permisosList;
+    }
+
+    public Set<Roles> getRolesList() {
+        return rolesList;
+    }
+
+    public void setRolesList(Set<Roles> rolesList) {
+        this.rolesList = rolesList;
+    }
 }

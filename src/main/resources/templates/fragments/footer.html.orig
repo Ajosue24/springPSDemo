@@ -50,9 +50,15 @@
             <!-- Custom Theme Scripts -->
             <script src="../../build/js/custom.js"></script>
             <script src="../../js/jquery.autocomplete.js"></script>
+<<<<<<< HEAD
             
             
             <script src="../../vendors/pnotify/dist/pnotify.js"></script>
+
+
+
+=======
+>>>>>>> ae3a49469c415a965658ab152ca5a11f31675269
         </div>
     </footer>
 
