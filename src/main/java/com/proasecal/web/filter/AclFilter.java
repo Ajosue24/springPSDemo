@@ -1,9 +1,12 @@
 package com.proasecal.web.filter;
 
 import com.proasecal.web.cache.CacheAtrib;
+import com.proasecal.web.entity.seguridad.Usuarios;
+
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -17,9 +20,9 @@ import java.io.IOException;
 public class AclFilter extends GenericFilterBean {
     private final Logger LOG = LoggerFactory.getLogger(AclFilter.class);
     private CacheAtrib cacheManager = CacheAtrib.getInstance();
-
-    public AclFilter() {
-    }
+  
+    
+    public AclFilter() {}
 
 
     @Override
@@ -28,6 +31,8 @@ public class AclFilter extends GenericFilterBean {
         LOG.info("Verificando los permisos del usuario");
         Boolean acceso = true;
         cacheManager.getTextoPrueba();
+        
+        //Usuarios usuario = (Usuarios) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (acceso) {
             LOG.info("Permiso para acceder al recurso.");
