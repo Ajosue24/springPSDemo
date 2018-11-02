@@ -51,7 +51,6 @@ public class AclFilter extends GenericFilterBean {
         cacheManager.getTextoPrueba();
         String url = hRequest.getRequestURI();
         
-        
         Optional<Authentication> auth = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication());
         
         if(auth.isPresent()) {
@@ -65,6 +64,7 @@ public class AclFilter extends GenericFilterBean {
         			LOG.info("No posee permisos");         			
         		}else {
         			LOG.info("Posee permisos");  
+
         		}
         	} 	
 	

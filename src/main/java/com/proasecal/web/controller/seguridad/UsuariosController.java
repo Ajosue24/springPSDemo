@@ -57,7 +57,9 @@ public class UsuariosController {
         if(usuarioService.validarUsuarioExistente(usuariosForm.getNombreUsuario())){
             bindingResult.rejectValue("nombreUsuario", "error", env.getProperty("msg.nombreExistente"));
         }else if(usuariosForm.getCodProasecal()!=null&& usuariosForm.getCodProasecal()>1){
-            bindingResult.rejectValue("codProasecal", "error", env.getProperty("msg.codigoExistente"));
+            if(usuarioService.validarCodProasecalExistente(usuariosForm.getCodProasecal())){
+                bindingResult.rejectValue("codProasecal", "error", env.getProperty("msg.codigoExistente"));
+            }
         }
         if(bindingResult.hasErrors()){
             model.setViewName("security/usuarios_admin");

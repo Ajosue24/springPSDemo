@@ -34,7 +34,7 @@ public class UsuarioService {
         return usuariosRepository.existsByNombreUsuario(nombreUsuario);
     }
 
-    public Boolean validarCodProasecalExistente(String codigoProasecal){
+    public Boolean validarCodProasecalExistente(Integer codigoProasecal){
         return usuariosRepository.existsByCodProasecal(codigoProasecal);
     }
 }
