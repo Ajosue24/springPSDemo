@@ -12,5 +12,5 @@ public interface UsuarioRepository extends CrudRepository<Usuarios,Long> {
 
 	Boolean existsByNombreUsuario(String nombreUsuario);
 
-	Boolean existsByCodProasecal(String CodigoProasecal);
+	Boolean existsByCodProasecal(Integer CodigoProasecal);
 }

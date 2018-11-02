@@ -133,7 +133,7 @@
 													</label>
 													<div class="form-group">
 														<select id='pre-selected-options' class="select-multiple"
-															multiple='multiple' th:field="*{rolesList}">
+															multiple='multiple' required="required" th:field="*{rolesList}">
 															<option th:each="rol,row : ${listaRoles}"
 																th:value="${{rol}}" th:text="${rol.nombreRol}"
 																th:id="${rol.idRoles}">elem 1</option>

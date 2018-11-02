@@ -56,6 +56,8 @@ public class AccessController {
 
     @GetMapping("/")
     public String home() {
+
+        //throw new RuntimeException("error");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication.getAuthorities().stream()
                 .anyMatch(r -> r.getAuthority().equals("ROLE_ANONYMOUS"))){

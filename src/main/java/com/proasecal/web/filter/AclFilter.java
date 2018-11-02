@@ -28,13 +28,13 @@ public class AclFilter extends GenericFilterBean {
         LOG.info("Verificando los permisos del usuario");
         Boolean acceso = true;
         cacheManager.getTextoPrueba();
-
-        if (acceso) {
+   if (acceso) {
             LOG.info("Permiso para acceder al recurso.");
             chain.doFilter(request, response);
         } else {
             LOG.info("No posee el permiso para acceder al recurso");
             HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+
             httpServletResponse.addHeader("Content-Type", "application/json");
             httpServletResponse.setStatus(401);
             JSONObject error = new JSONObject();

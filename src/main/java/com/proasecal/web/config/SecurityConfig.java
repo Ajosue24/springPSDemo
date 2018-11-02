@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          */
         http.cors().and();
         http.csrf().disable().authorizeRequests().antMatchers("/register", "/",
-                "/images/**", "/login", "/css/**", "/js/**", "/webjars/**").permitAll() //Aqui le decimos que permita las carpetas de stylos y js para que sean publicos
+                "/images/**", "/login", "/css/**", "/js/**","/vendors/**","/build/**", "/webjars/**").permitAll() //Aqui le decimos que permita las carpetas de stylos y js para que sean publicos
         		.anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll().
