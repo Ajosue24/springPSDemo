@@ -45,7 +45,7 @@ public class Roles {
     @ManyToMany(mappedBy = "rolesList")
     private List<Usuarios> usuariosList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "listRoles")
+    @ManyToMany(mappedBy = "listRoles", fetch=FetchType.EAGER)
     private List<Permisos> permisosList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "rolesList")

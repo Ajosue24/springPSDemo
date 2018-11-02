@@ -11,6 +11,7 @@ public interface PermisoRepository extends CrudRepository<Permisos, Long> {
 
     List<Permisos> findAllByIdModulos(Modulos modulos);
     List<Permisos> findAllByListRoles(Roles roles);
+    List<Permisos> findAll();
 
 
 }

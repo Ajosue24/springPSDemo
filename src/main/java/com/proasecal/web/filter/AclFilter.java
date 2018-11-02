@@ -1,13 +1,21 @@
 package com.proasecal.web.filter;
 
 import com.proasecal.web.cache.CacheAtrib;
+import com.proasecal.web.entity.seguridad.CustomUserDetail;
+import com.proasecal.web.entity.seguridad.Permisos;
 import com.proasecal.web.entity.seguridad.Usuarios;
+import com.proasecal.web.service.seguridad.PermisoService;
+import com.proasecal.web.util.Util;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -15,37 +23,50 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class AclFilter extends GenericFilterBean {
     private final Logger LOG = LoggerFactory.getLogger(AclFilter.class);
     private CacheAtrib cacheManager = CacheAtrib.getInstance();
+    private PermisoService permisoService;
+    
   
     
-    public AclFilter() {}
+    public AclFilter(PermisoService permisoService) {
+    	this.permisoService = permisoService;
+    }
 
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest hRequest = ((HttpServletRequest) request);
+        HttpServletResponse hResponse = ((HttpServletResponse) response);
         LOG.info("Verificando los permisos del usuario");
-        Boolean acceso = true;
+        Boolean acceso = false;
         cacheManager.getTextoPrueba();
+        String url = hRequest.getRequestURI();
         
-        //Usuarios usuario = (Usuarios) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<Authentication> auth = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication());
+        
+        if(auth.isPresent()) {
+        	LOG.info("Usuario logeado");       	
+        	
+        	Optional<List<Permisos>> collectPermisos = Util.userPermissions();
+        	
+        	if(collectPermisos.isPresent()) {
+        		collectPermisos.get().forEach(x -> LOG.info("PERMISOS: "+x.getNombrePermiso()));
+        	} 	
+	
+        }else {
+        	chain.doFilter(request, response);
+        }       
 
-        if (acceso) {
-            LOG.info("Permiso para acceder al recurso.");
-            chain.doFilter(request, response);
-        } else {
-            LOG.info("No posee el permiso para acceder al recurso");
-            HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-            httpServletResponse.addHeader("Content-Type", "application/json");
-            httpServletResponse.setStatus(401);
-            JSONObject error = new JSONObject();
-            error.put("mensaje", "No posee el permiso para acceder al recurso");
-            httpServletResponse.getWriter().print(error.toString());
-        }
+        chain.doFilter(request, response);
     }
 
     private String removeIdFromUrl(String url) {

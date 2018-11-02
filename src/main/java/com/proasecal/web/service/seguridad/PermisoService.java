@@ -32,5 +32,9 @@ public class PermisoService {
     public List<Permisos> obtenerPermisosXRol(Roles roles){
         return permisoRepository.findAllByListRoles(roles);
     }
+    
+    public List<Permisos> all(){
+    	return permisoRepository.findAll();
+    }
 
 }

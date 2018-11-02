@@ -3,6 +3,7 @@ package com.proasecal.web.config;
 
 import com.proasecal.web.filter.AclFilter;
 import com.proasecal.web.service.seguridad.CustomUserDetailsService;
+import com.proasecal.web.service.seguridad.PermisoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     private CustomUserDetailsService userDetailsService;
+    
+    @Autowired
+    PermisoService permisoService;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -44,10 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
+        /*auth.inMemoryAuthentication()
                 .withUser("admin").password("$2a$10$2Bh/CFmuoofz2uPdDsuw4.FgvlDwk10t905WhUZgkD.EFtLrx6gAO").roles("ADMIN")
                 .and()
-                .passwordEncoder(new BCryptPasswordEncoder());
+                .passwordEncoder(new BCryptPasswordEncoder());*/
 
     	auth.userDetailsService(userDetailsService)
 		.passwordEncoder(passwordEncoder());
@@ -103,7 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private AclFilter aclFilter() {
-        return new AclFilter();
+        return new AclFilter(permisoService);
     }
 
 }
