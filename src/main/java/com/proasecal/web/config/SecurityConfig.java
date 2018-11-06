@@ -85,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 logout().
                 logoutSuccessUrl("/login?logout").
                 deleteCookies("JSESSIONID").
-                and().addFilterAfter(aclFilter(), BasicAuthenticationFilter.class).
+                and().
                 sessionManagement().
                 maximumSessions(1).
                 maxSessionsPreventsLogin(false).//El segundo saca al primero
