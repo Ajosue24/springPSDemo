@@ -39,7 +39,10 @@ public class Util {
 		}		
 	}
 
-
+	/**
+	 * Obtiene a los modulos que estan asociado al rol
+	 * @return
+	 */
 	public static Optional<List<Modulos>> userModules(){
 		Optional<CustomUserDetail> usuario = Optional.ofNullable(Util.userAuth());
 		if(usuario.isPresent()) {
