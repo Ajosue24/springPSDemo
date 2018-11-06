@@ -5,7 +5,6 @@ import com.proasecal.web.service.seguridad.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,7 +25,7 @@ public class RolesController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
-        ModelAndView modelAndView = new ModelAndView("security/roles_admin");
+        ModelAndView modelAndView = new ModelAndView("security/rolesAdmin");
         modelAndView.addObject("rolesForm", new Roles());
         modelAndView.addObject("listaRoles", rolService.obtenerListaRoles());
 
@@ -35,7 +34,7 @@ public class RolesController {
 
     @RequestMapping(value = "updateRoles/{id}",method = RequestMethod.GET)
     public ModelAndView updateRoles(@PathVariable long id ){
-        ModelAndView modelAndView = new ModelAndView("security/roles_admin");
+        ModelAndView modelAndView = new ModelAndView("security/rolesAdmin");
         Roles rol = rolService.obtenerRol(id);
         modelAndView.addObject("rolesForm", rol);
         modelAndView.addObject("listaRoles", rolService.obtenerListaRoles());
@@ -50,7 +49,7 @@ public class RolesController {
             bindingResult.rejectValue("nombreRol", "error", env.getProperty("msg.nombreExistente"));
         }
         if(bindingResult.hasErrors()){
-            model.setViewName("security/roles_admin");
+            model.setViewName("rolesAdmin");
             model.addObject("rolesForm", rolesForm);
             model.addObject("listaRoles", rolService.obtenerListaRoles());
             return model;
