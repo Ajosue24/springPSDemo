@@ -48,7 +48,7 @@ public class Roles {
     @ManyToMany(mappedBy = "listRoles", fetch=FetchType.EAGER)
     private List<Permisos> permisosList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "rolesList")
+    @ManyToMany(mappedBy = "rolesList",fetch=FetchType.EAGER)
     private List<Modulos> modulosList = new ArrayList<>();
 
     public long getIdRoles() {
@@ -106,5 +106,13 @@ public class Roles {
 
     public void setUsuariosList(List<Usuarios> usuariosList) {
         this.usuariosList = usuariosList;
+    }
+
+    public List<Modulos> getModulosList() {
+        return modulosList;
+    }
+
+    public void setModulosList(List<Modulos> modulosList) {
+        this.modulosList = modulosList;
     }
 }

@@ -41,7 +41,7 @@ public class Modulos {
     private List<Permisos> permisosList;
 
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name="MODULOS_X_ROLES", joinColumns=@JoinColumn(name="id_modulos"), inverseJoinColumns=@JoinColumn(name="id_roles"))
     private Set<Roles> rolesList;
 

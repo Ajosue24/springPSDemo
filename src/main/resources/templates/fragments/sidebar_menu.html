@@ -11,7 +11,7 @@
                     </ul>-->
                 </li>
 
-                <li sec:authorize="${hasRole(T(com.proasecal.web.controller.seguridad.RolesAccess).devolverRolParaModulo('ADMINISTRAR'))}">
+                <li sec:authorize="${hasAnyRole(T(com.proasecal.web.controller.seguridad.RolesAccess).rolesPermitidos('ADMINISTRAR'))}">
                     <a><i class="fa fa-eyedropper"></i> Administrar / Gestionar <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li> <a th:href="@{/gestionClientes/}">Clientes</a></a></li>
@@ -67,7 +67,7 @@
                 </li>-->
             </ul>
         </div>
-        <div class="menu_section" sec:authorize="${hasRole(T(com.proasecal.web.controller.seguridad.RolesAccess).devolverRolParaModulo('CONFIGURACION'))}">
+        <div class="menu_section" sec:authorize="${hasAnyRole(T(com.proasecal.web.controller.seguridad.RolesAccess).rolesPermitidos('seguridad'))}">
             <h3>Administracion</h3>
             <ul class="nav side-menu">
                 <li><a><i class="fa fa-bug"></i> Configuracion <span class="fa fa-chevron-down"></span></a>

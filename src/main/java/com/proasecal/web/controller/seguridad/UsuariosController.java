@@ -38,7 +38,7 @@ public class UsuariosController {
     public ModelAndView main(){
         ModelAndView modelAndView = new ModelAndView("security/usuarios_admin");
         List<Roles> listaRoles = rolService.obtenerListaRoles();
-        List<String> lista = Arrays.asList("LOCO","otra cosa","otro rol");
+        List<String> lista = Arrays.asList("LOCO","otra cosa","otro rol","COORDINADOR");
         List<Usuarios>listaUsuarios = usuarioService.list();
         modelAndView.addObject("usuariosForm", new Usuarios());
         modelAndView.addObject("listaUsuarios", listaUsuarios);

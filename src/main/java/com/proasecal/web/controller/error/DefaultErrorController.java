@@ -36,6 +36,9 @@ public class DefaultErrorController implements ErrorController {
             case 500: {
                 errorMsg = "Error Interno";
                 break;
+            }case 405:{
+                errorMsg = "Metodo no soportado";
+                break;
             }
 
 

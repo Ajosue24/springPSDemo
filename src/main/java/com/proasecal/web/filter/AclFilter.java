@@ -46,7 +46,6 @@ public class AclFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest hRequest = ((HttpServletRequest) request);
         HttpServletResponse hResponse = ((HttpServletResponse) response);
-
         Boolean acceso = false;
         cacheManager.getTextoPrueba();
         String url = hRequest.getRequestURI();

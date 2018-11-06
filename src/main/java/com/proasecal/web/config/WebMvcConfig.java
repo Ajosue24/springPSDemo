@@ -24,7 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
        // Exclude /admin/oldLogin
        registry.addInterceptor(new AclInterceptor())//
              .addPathPatterns("/*")//
-             .excludePathPatterns("/login")
+             .excludePathPatterns("/login","/")
              .excludePathPatterns("/error");
     }
 
