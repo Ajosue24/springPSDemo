@@ -1,3 +1,4 @@
+
 package com.proasecal.web.repository.parametricas;
 
 
@@ -12,3 +13,4 @@ public interface IdTipoPaisRepository extends CrudRepository<TipoDocumentoPais,L
     List<TipoDocumentoPais> findByIdPais(Pais idPais);
 
 }
+

@@ -4,29 +4,6 @@
       layout:decorate="~{fragments/main_layout}">
 <head>
     <title>Programa</title>
-    <!-- Bootstrap -->
-    <link href="../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="../../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- bootstrap-datetimepicker -->
-    <link href="../../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <!-- Ion.RangeSlider -->
-    <link href="../../vendors/normalize-css/normalize.css" rel="stylesheet">
-    <link href="../../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
-    <link href="../../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
-    <!-- Bootstrap Colorpicker -->
-    <link href="../../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-
-    <link href="../../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="../../build/css/custom.min.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/gestion_clientes.css}"
-          href="../../css/gestion_clientes.css"/>
 </head>
 <body>
 
@@ -104,9 +81,9 @@
                                             class="required">*</span>
                                     </label>
 
-                                        <select th:field="*{idDepartamento}" required="required" class="form-control">
+                                        <select th:field="*{idDepartamentos}" required="required" class="form-control">
                                             <option th:fragment="models2" th:each="model : ${models2}"
-                                                    th:value="${model.idDepartamento}"
+                                                    th:value="${model.idDepartamentos}"
                                                     th:text="${model.descripcionDepartamento}"/>
                                         </select>
                                     </div>
@@ -244,7 +221,7 @@
                                     <td th:text="${clientes.razonSocial}"></td>
                                     <td th:text="${clientes.nombreComercial}"></td>
                                     <td th:text="${clientes.idPais.nombrePais}"></td>
-                                    <td th:text="${clientes.idDepartamento.descripcionDepartamento}"></td>
+                                    <td th:text="${clientes.idDepartamentos.descripcionDepartamento}"></td>
                                     <td th:text="${clientes.correoCliente}"></td>
                                     <td th:text="${clientes.telefonoCliente}"></td>
                                     <td>
@@ -257,8 +234,13 @@
                     </div>
                 </div>
                 <!--fin tabla para consultar existentes-->
+                <div layout:fragment="customjs">
+                    <script src="../../js/gestion_clientes.js"></script>
+                    <link rel="stylesheet" th:href="@{/css/gestion_clientes.css}"
+                          href="../../css/gestion_clientes.css"/>
+                </div>
                 <div th:replace="parametricas/modal_filtrar_usuario :: modal-filtrar-usuario"/>
-                <script src="../../js/gestion_clientes.js"></script>
+
                     </div>
                 </div>
             </div>

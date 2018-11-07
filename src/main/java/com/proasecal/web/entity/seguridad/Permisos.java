@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,30 @@ import java.util.Set;
 @Table(name = "PERMISOS")
 public class Permisos {
 
+    public Permisos(Long idPermisos){
+        this.idPermisos = idPermisos;
+    }
+
+
+    public Permisos(String descripcion,
+                    String nombrePermiso,
+                    String url,
+                    Modulos idModulos,
+                    Permisos permisos,
+                    Set<Roles> listRoles){
+        this.idPermisos = idPermisos;
+        this.descripcion = descripcion;
+        this.nombrePermiso = nombrePermiso;
+        this.url = url;
+        this.idModulos = idModulos;
+        this.listRoles = listRoles;
+        this.permisos = permisos;
+
+    }
+
+
+    public Permisos() {
+    }
 
     @GenericGenerator(
             name = "permisosGenerator",
@@ -116,4 +141,5 @@ public class Permisos {
     public void setPermisosList(List<Permisos> permisosList) {
         this.permisosList = permisosList;
     }
+
 }

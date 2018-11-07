@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -59,7 +60,7 @@ public class Usuarios {
 
     @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="ROLES_X_USUARIOS", joinColumns=@JoinColumn(name="id_usuarios_sistema"), inverseJoinColumns=@JoinColumn(name="id_roles"))
-    private Set<Roles> rolesList;
+    private List<Roles> rolesList;
 
 
     public Usuarios() {}
@@ -156,11 +157,11 @@ public class Usuarios {
         this.correo = correo;
     }
 
-    public Set<Roles> getRolesList() {
+    public List<Roles> getRolesList() {
         return rolesList;
     }
 
-    public void setRolesList(Set<Roles> rolesList) {
+    public void setRolesList(List<Roles> rolesList) {
         this.rolesList = rolesList;
     }
 

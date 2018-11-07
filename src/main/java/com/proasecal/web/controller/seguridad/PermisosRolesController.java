@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/pemisosRoles")
@@ -55,7 +56,7 @@ public class PermisosRolesController {
         Modulos modulos = moduloService.buscarModuloPorId(paramsLong.get(1));
         Roles rolSeleccionado = rolService.obtenerRol(paramsLong.get(0));
         modulos.getRolesList().add(rolSeleccionado);
-        moduloService.guardarModulos(modulos);
+        moduloService.guardarModulo(modulos);
         List<Permisos> permisosxModulo = permisoService.obtenerPermisosPorModulos(modulos);
        model.addAttribute("listaPermisos",permisosxModulo);
        List<Boolean> permisosRol=new ArrayList<>();
@@ -90,7 +91,7 @@ return "security/permisos_roles :: permisosRolesTable";
            p.getListRoles().remove(roles);
            permisoService.guardarPermiso(p);
        }
-        moduloService.guardarModulos(modulos);
+        moduloService.guardarModulo(modulos);
         return "security/permisos_roles :: permisosRolesTable";
     }
 

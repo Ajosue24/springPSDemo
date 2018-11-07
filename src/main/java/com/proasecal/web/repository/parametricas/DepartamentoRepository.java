@@ -1,13 +1,15 @@
+
 package com.proasecal.web.repository.parametricas;
 
 
-import com.proasecal.web.entity.parametricas.Departamento;
+import com.proasecal.web.entity.parametricas.Departamentos;
 import com.proasecal.web.entity.parametricas.Pais;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface DepartamentoRepository extends CrudRepository<Departamento,Long> {
+public interface DepartamentoRepository extends CrudRepository<Departamentos,Long> {
 
-    List<Departamento> findDepartamentoByIdPais(Pais pais);
+    List<Departamentos> findDepartamentoByIdPais(Pais pais);
 }
+

@@ -8,5 +8,7 @@ public interface RolRepository extends CrudRepository<Roles,Long> {
 
     public boolean existsByNombreRol(String nombre);
 
+    public Roles findByNombreRol(String nombre);
+
 
 }

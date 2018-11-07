@@ -1,3 +1,4 @@
+
 package com.proasecal.web.service.parametricas;
 
 import com.proasecal.web.repository.parametricas.CiudadRepository;
@@ -12,3 +13,4 @@ public class CiudadService {
     @Autowired
     CiudadRepository ciudadRepository;
 }
+

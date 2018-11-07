@@ -18,7 +18,7 @@ import java.util.List;
                 name = "idTipoDocumentoPaisGenerator",
                 strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
                 parameters = {
-                        @org.hibernate.annotations.Parameter(name = "sequence_name", value = "idTipoDocumentoPaisGenerator_id_tipo_documento_pais_seq"),
+                        @org.hibernate.annotations.Parameter(name = "sequence_name", value = "id_tipo_documento_pais_seq"),
                         @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
                         @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
                 }
@@ -27,7 +27,7 @@ import java.util.List;
         @Id
         @Column(name = "ID_TIPO_DOCUMENTO_PAIS")
         @GeneratedValue(generator = "idTipoDocumentoPaisGenerator")
-        long idTipoPais;
+       private long idTipoPais;
 
     @ManyToOne
     @JoinColumn(name = "id_pais")
@@ -40,7 +40,7 @@ import java.util.List;
 
     @OneToMany(mappedBy = "idTipoPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-    List<Clientes> clientesList;
+    List<Clientes> tplistaClientes;
 
 
     public long getIdTipoPais() {
@@ -67,12 +67,13 @@ import java.util.List;
         this.descripcionId = descripcionId;
     }
 
-    public List<Clientes> getClientesList() {
-        return clientesList;
+    public List<Clientes> getTplistaClientes() {
+        return tplistaClientes;
     }
 
-    public void setClientesList(List<Clientes> clientesList) {
-        this.clientesList = clientesList;
+    public void setTplistaClientes(List<Clientes> tplistaClientes) {
+        this.tplistaClientes = tplistaClientes;
     }
+
 }
 

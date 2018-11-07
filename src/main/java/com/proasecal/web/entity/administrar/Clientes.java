@@ -3,9 +3,10 @@ package com.proasecal.web.entity.administrar;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.proasecal.web.entity.parametricas.Ciudad;
-import com.proasecal.web.entity.parametricas.Departamento;
+import com.proasecal.web.entity.parametricas.Departamentos;
 import com.proasecal.web.entity.parametricas.Pais;
 import com.proasecal.web.entity.parametricas.TipoDocumentoPais;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -30,7 +31,7 @@ public class Clientes {
     @Id
     @Column(name = "ID_CLIENTES",columnDefinition = "serial")
     @GeneratedValue(generator = "clienteGenerator")
-    long clienteId;
+    private long clienteId;
 
     @ManyToOne
     @JoinColumn(name = "ID_PAIS")
@@ -52,13 +53,11 @@ public class Clientes {
 
     @Column(name = "V_ID_CLIENTE")
     @NotNull
-    String numeroIdentificacionCliente;
+    private String numeroIdentificacionCliente;
 
     @ManyToOne
-    @JoinColumn(name = "ID_DEPARTAMENTO")
-    @NotNull
-    @JsonBackReference
-    private Departamento idDepartamento;
+    @JoinColumn(name = "ID_DEPARTAMENTOS")
+    private Departamentos idDepartamentos;
 
     @ManyToOne
     @JoinColumn(name = "ID_CIUDAD")
@@ -67,28 +66,29 @@ public class Clientes {
     private Ciudad idCiudad;
 
     @Column(name = "V_DIRECCION_CLIENTE")
-    String direccionCliente;
+    private String direccionCliente;
     @Column(name = "V_CORREO_CLIENTE")
-    String correoCliente;
+    private String correoCliente;
     @Column(name = "V_CORREO_ALTERNATIVO")
-    String correoAlternativo;
+    private String correoAlternativo;
 
     @Column(name = "V_TELEFONO_CLIENTE")
-    String telefonoCliente;
+    private String telefonoCliente;
     @Column(name = "V_TELEFONO_ALTERNATIVO")
-    String telefonoAlternativo;
+    private String telefonoAlternativo;
 
     @Column(name = "V_RAZON_SOCIAL")
     @NotNull
-    String razonSocial;
+    private String razonSocial;
     @Column(name = "V_NOMBRE_COMERCIAL")
-    String nombreComercial;
+    private String nombreComercial;
 
-    @Column(name = "B_ESTADO", columnDefinition = "DEFAULT true")
-    Boolean estadoCliente = true;
+    @Column(name = "B_ESTADO")
+    private Boolean estadoCliente = true;
 
     @Column(name = "D_FECHA_CREACION")
-    Date fechaCreacion;
+    @CreationTimestamp
+    private Date fechaCreacion;
 
     public long getClienteId() {
         return clienteId;
@@ -96,22 +96,6 @@ public class Clientes {
 
     public void setClienteId(long clienteId) {
         this.clienteId = clienteId;
-    }
-
-    public Pais getIdPais() {
-        return idPais;
-    }
-
-    public void setIdPais(Pais idPais) {
-        this.idPais = idPais;
-    }
-
-    public TipoDocumentoPais getIdTipoPais() {
-        return idTipoPais;
-    }
-
-    public void setIdTipoPais(TipoDocumentoPais idTipoPais) {
-        this.idTipoPais = idTipoPais;
     }
 
     public String getUsuarioDirector() {
@@ -138,20 +122,12 @@ public class Clientes {
         this.numeroIdentificacionCliente = numeroIdentificacionCliente;
     }
 
-    public Departamento getIdDepartamento() {
-        return idDepartamento;
+    public Departamentos getIdDepartamentos() {
+        return idDepartamentos;
     }
 
-    public void setIdDepartamento(Departamento idDepartamento) {
-        this.idDepartamento = idDepartamento;
-    }
-
-    public Ciudad getIdCiudad() {
-        return idCiudad;
-    }
-
-    public void setIdCiudad(Ciudad idCiudad) {
-        this.idCiudad = idCiudad;
+    public void setIdDepartamento(Departamentos idDepartamentos) {
+        this.idDepartamentos = idDepartamentos;
     }
 
     public String getDireccionCliente() {
@@ -224,5 +200,33 @@ public class Clientes {
 
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public Pais getIdPais() {
+        return idPais;
+    }
+
+    public void setIdPais(Pais idPais) {
+        this.idPais = idPais;
+    }
+
+    public TipoDocumentoPais getIdTipoPais() {
+        return idTipoPais;
+    }
+
+    public void setIdTipoPais(TipoDocumentoPais idTipoPais) {
+        this.idTipoPais = idTipoPais;
+    }
+
+    public void setIdDepartamentos(Departamentos idDepartamentos) {
+        this.idDepartamentos = idDepartamentos;
+    }
+
+    public Ciudad getIdCiudad() {
+        return idCiudad;
+    }
+
+    public void setIdCiudad(Ciudad idCiudad) {
+        this.idCiudad = idCiudad;
     }
 }

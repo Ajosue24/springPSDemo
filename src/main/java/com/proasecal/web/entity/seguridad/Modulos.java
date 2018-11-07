@@ -14,6 +14,20 @@ import java.util.Set;
 @Table(name = "MODULOS")
 public class Modulos {
 
+    public Modulos(Long idModulos){
+        this.idModulos = idModulos;
+
+    }
+
+    public Modulos(@NotNull String nombreModulo, String descripcion, Set<Roles> rolesList) {
+        this.nombreModulo = nombreModulo;
+        this.descripcion = descripcion;
+        this.rolesList = rolesList;
+    }
+
+    public Modulos() {
+    }
+
     @GenericGenerator(
             name = "modulosGenerator",
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",

@@ -1,3 +1,4 @@
+
 package com.proasecal.web.repository.administrar;
 
 
@@ -8,3 +9,4 @@ public interface ClienteRepository extends CrudRepository<Clientes,Long> {
 
     Clientes findClienteByNumeroIdentificacionClienteEquals(String idCliente);
 }
+

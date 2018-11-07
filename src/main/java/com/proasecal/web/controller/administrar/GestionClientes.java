@@ -1,9 +1,10 @@
 package com.proasecal.web.controller.administrar;
 
 
+
 import com.proasecal.web.entity.administrar.Clientes;
 import com.proasecal.web.entity.parametricas.Ciudad;
-import com.proasecal.web.entity.parametricas.Departamento;
+import com.proasecal.web.entity.parametricas.Departamentos;
 import com.proasecal.web.entity.parametricas.Pais;
 import com.proasecal.web.entity.parametricas.TipoDocumentoPais;
 import com.proasecal.web.service.administrar.ClienteService;
@@ -34,10 +35,12 @@ public class GestionClientes {
 
 
 
-    /**
+
+/**
      * activa al ingresar desde el index, Precarga la vista para gestion Clientes
      * @return
      */
+
     @RequestMapping(value="/",method= RequestMethod.GET )
     public ModelAndView main(){
         ModelAndView modelAndView = new ModelAndView("administrar/gestion_clientes");
@@ -94,12 +97,13 @@ public class GestionClientes {
 
 
 
-    /**
+/**
      * Obtiene ID Segun Pais
      * @param nombrePais
      * @param model
      * @return
      */
+
     @RequestMapping("/idTipoPais")
     public String obtenerIDPais(@RequestParam("idPais.nombrePais") String nombrePais, Model model) {
         Pais pais = new Pais();
@@ -109,26 +113,28 @@ public class GestionClientes {
         return "administrar/gestion_clientes :: models"; //se dejan nombres standart para ser reusados
     }
 
-    /**
+
+/**
      * Obtiene Segun Pais El departamento
      * @param nombrePais
      * @param model
      * @return
      */
+
     @RequestMapping("/obtDepartamentos")
     public String obtenerDeparSegunPais(@RequestParam("idPais.nombrePais") String nombrePais, Model model) {
         Pais pais = new Pais();
         pais.setIdPais(Long.valueOf(nombrePais).longValue());
-        List<Departamento> models = departamentoService.obtenerDepartamentoXPais(pais);
+        List<Departamentos> models = departamentoService.obtenerDepartamentoXPais(pais);
         model.addAttribute("models2", models);
         return "administrar/gestion_clientes :: models2";
     }
 
-
-
-
-
 }
+
+
+
+
 
 
 

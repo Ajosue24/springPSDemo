@@ -33,5 +33,10 @@ public class RolService {
         return rolesRepository.existsByNombreRol(nombreRol);
     }
 
+    public Roles obtenerPorNombreRol(String nombreRol){
+        return rolesRepository.findByNombreRol(nombreRol);
+    }
+
+
 
 }

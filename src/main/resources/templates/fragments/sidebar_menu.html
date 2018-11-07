@@ -11,7 +11,7 @@
                     </ul>-->
                 </li>
 
-                <li sec:authorize="${hasAnyRole(T(com.proasecal.web.controller.seguridad.RolesAccess).rolesPermitidos('ADMINISTRAR'))}">
+                <li>
                     <a><i class="fa fa-eyedropper"></i> Administrar / Gestionar <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li> <a th:href="@{/gestionClientes/}">Clientes</a></a></li>

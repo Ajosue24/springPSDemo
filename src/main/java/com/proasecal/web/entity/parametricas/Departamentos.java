@@ -11,14 +11,14 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "DEPARTAMENTO")
-public class Departamento {
+@Table(name = "DEPARTAMENTOS")
+public class Departamentos {
 
     @GenericGenerator(
             name = "departamentoGenerator",
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "departamento_id_m_departamento_seq"),
+                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "id_departamento_seq"),
                     @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
                     @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
             }
@@ -27,14 +27,14 @@ public class Departamento {
 
 
     @Id
-    @Column(name = "ID_DEPARTAMENTO")
+    @Column(name = "ID_DEPARTAMENTOS")
     @GeneratedValue(generator = "departamentoGenerator")
-    long idDepartamento;
+    private long idDepartamentos;
 
 
     @Column(name = "V_DESCRIPCION")
     @NotNull
-    String descripcionDepartamento;
+    private String descripcionDepartamento;
 
 
     @ManyToOne
@@ -43,20 +43,20 @@ public class Departamento {
     private Pais idPais;
 
 
-    @OneToMany(mappedBy = "idDepartamento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "idDepartamentos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Ciudad> ciudadList;
 
-    @OneToMany(mappedBy = "idDepartamento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "idDepartamentos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-    private List<Clientes> clientesList;
+    private List<Clientes> listaClientes;
 
-    public long getIdDepartamento() {
-        return idDepartamento;
+    public long getIdDepartamentos() {
+        return idDepartamentos;
     }
 
-    public void setIdDepartamento(long idDepartamento) {
-        this.idDepartamento = idDepartamento;
+    public void setIdDepartamentos(long idDepartamentos) {
+        this.idDepartamentos = idDepartamentos;
     }
 
     public String getDescripcionDepartamento() {
@@ -83,11 +83,11 @@ public class Departamento {
         this.ciudadList = ciudadList;
     }
 
-    public List<Clientes> getClientesList() {
-        return clientesList;
+    public List<Clientes> getListaClientes() {
+        return listaClientes;
     }
 
-    public void setClientesList(List<Clientes> clientesList) {
-        this.clientesList = clientesList;
+    public void setListaClientes(List<Clientes> listaClientes) {
+        this.listaClientes = listaClientes;
     }
 }

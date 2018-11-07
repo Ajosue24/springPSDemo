@@ -1,5 +1,8 @@
 package com.proasecal.web.controller;
 
+import com.proasecal.web.entity.parametricas.Pais;
+import com.proasecal.web.service.parametricas.IdTipoPaisService;
+import com.proasecal.web.service.parametricas.PaisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +17,15 @@ import java.util.List;
 @RequestMapping(value="/restC")
 public class RestController {
 
-   /* @Autowired
+    @Autowired
     PaisService paisService;
 
     @Autowired
     IdTipoPaisService idTipoPaisService;
 
-    *//**
+    /**
      * Obtener Pais
-     *//*
+     */
     @RequestMapping(value = "autoCompPais/{desPais}", method = RequestMethod.GET, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Pais>> getPais(@PathVariable("desPais") String desPais) {
         List<Pais> listaFiltrada = paisService.filtrarPaisLike(desPais);
@@ -32,7 +35,7 @@ public class RestController {
             return new ResponseEntity<List<Pais>>(listaFiltrada, HttpStatus.BAD_REQUEST);
         }
 
-    }*/
+    }
 }
 
 

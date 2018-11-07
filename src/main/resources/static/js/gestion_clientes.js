@@ -29,7 +29,7 @@
     function updateComboIdPais(idPais) {
 
         $("#idTipoPais").load('/gestionClientes/idTipoPais', 'idPais.nombrePais='+idPais+'');
-        $("#idDepartamento").load('/gestionClientes/obtDepartamentos', 'idPais.nombrePais='+idPais+'');
+        $("#idDepartamentos").load('/gestionClientes/obtDepartamentos', 'idPais.nombrePais='+idPais+'');
 
 
        /* $(function() {

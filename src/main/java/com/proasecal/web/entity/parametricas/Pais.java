@@ -18,7 +18,7 @@ public class Pais {
             name = "paisGenerator",
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "pais_id_pais_seq"),
+                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "id_pais_seq"),
                     @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
                     @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
             }
@@ -27,28 +27,27 @@ public class Pais {
     @Id
     @Column(name = "ID_PAIS")
     @GeneratedValue(generator = "paisGenerator")
-    long idPais;
+    private long idPais;
 
-    @Column(name="V_NOMBRE")
+    @Column(name = "V_NOMBRE")
     @NotNull
-    String nombrePais;
+    private String nombrePais;
 
-    @Column(name = "B_ESTADO",columnDefinition = "DEFAULT true")
-    Boolean estado;
+    @Column(name = "B_ESTADO")
+    private Boolean estado;
 
-
-    @OneToMany(mappedBy = "idPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
-    List<Departamento> departamentoList;
 
     @OneToMany(mappedBy = "idPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-    List<Clientes> clientesList;
+    private List<Departamentos> departamentoList;
 
     @OneToMany(mappedBy = "idPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-    List<TipoDocumentoPais> tipoDocumentoPaisList;
+    private List<Clientes> clientesList;
 
+    @OneToMany(mappedBy = "idPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<TipoDocumentoPais> tipoDocumentoPaisList;
 
     public long getIdPais() {
         return idPais;
@@ -74,11 +73,11 @@ public class Pais {
         this.estado = estado;
     }
 
-    public List<Departamento> getDepartamentoList() {
+    public List<Departamentos> getDepartamentoList() {
         return departamentoList;
     }
 
-    public void setDepartamentoList(List<Departamento> departamentoList) {
+    public void setDepartamentoList(List<Departamentos> departamentoList) {
         this.departamentoList = departamentoList;
     }
 
@@ -88,5 +87,13 @@ public class Pais {
 
     public void setClientesList(List<Clientes> clientesList) {
         this.clientesList = clientesList;
+    }
+
+    public List<TipoDocumentoPais> getTipoDocumentoPaisList() {
+        return tipoDocumentoPaisList;
+    }
+
+    public void setTipoDocumentoPaisList(List<TipoDocumentoPais> tipoDocumentoPaisList) {
+        this.tipoDocumentoPaisList = tipoDocumentoPaisList;
     }
 }

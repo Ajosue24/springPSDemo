@@ -39,7 +39,7 @@ public class Ciudad {
     @JoinColumn(name = "ID_DEPARTAMENTO")
     @NotFound(action = NotFoundAction.IGNORE)
     @JsonBackReference
-    private Departamento idDepartamento;
+    private Departamentos idDepartamentos;
 
 
     @OneToMany(mappedBy = "idCiudad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -63,12 +63,12 @@ public class Ciudad {
         this.descripcionCiudad = descripcionCiudad;
     }
 
-    public Departamento getIdDepartamento() {
-        return idDepartamento;
+    public Departamentos getIdDepartamento() {
+        return idDepartamentos;
     }
 
-    public void setIdDepartamento(Departamento idDepartamento) {
-        this.idDepartamento = idDepartamento;
+    public void setIdDepartamento(Departamentos idDepartamento) {
+        this.idDepartamentos = idDepartamentos;
     }
 
     public List<Clientes> getClientesList() {
