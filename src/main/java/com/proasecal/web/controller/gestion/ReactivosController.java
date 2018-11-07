@@ -7,19 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/programas")
+@RequestMapping(value = "/reactivos")
 @PropertySource("classpath:static/properties/msg.properties")
-public class ProgramasController {
-	
-	
-	
-	
-	
-	@GetMapping
-	public ModelAndView index() {
-		ModelAndView modelAndView = new ModelAndView("/administrar/programas/programa");
+public class ReactivosController {
 
+
+
+    @GetMapping
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("/administrar/reactivos/reactivo");
         return modelAndView;
-	}
+    }
 
 }
