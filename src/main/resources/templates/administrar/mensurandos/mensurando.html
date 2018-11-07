@@ -30,6 +30,16 @@
 								<ul class="nav navbar-right panel_toolbox">
 									<li><a class="collapse-link"><i
 											class="fa fa-chevron-up"></i></a></li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-plus"></i></a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a th:href="@{/metodos}">
+												<i class="fa fa-toggle-off"></i>
+												Métodos
+											</a>
+											</li>
+										</ul>
+									</li>
 								</ul>
 								<div class="clearfix"></div>
 							</div>
@@ -95,10 +105,8 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Habilitado
 											</label>
 											<p>
-												Si: <input type="radio" class="flat" name="estado"
-													id="estadoT" value="true" required /> No: <input
-													type="radio" class="flat" name="estado" id="estadoF"
-													value="false" />
+												<input type="radio" class="flat" name="estado"
+													id="estadoT" value="true" required />
 											</p>
 										</div>
 
