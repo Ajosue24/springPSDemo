@@ -39,7 +39,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Administre laboratorios</h3>
+                    <h3>Administre sedes</h3>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -48,8 +48,8 @@
                     <!--inicio Formulario-->
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Agregar / Editar Laboratorios
-                                <small>Añada o consulte los laboratorios</small>
+                            <h2>Agregar / Editar sedes
+                                <small>Añada o consulte las sedes</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -62,9 +62,9 @@
                                 <form>
                                     <div class="form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                            <label for="cliente">Cliente<span class="required">*</span></label>
-                                            <select required="required" class="form-control" id="cliente"
-                                                    name="cliente"></select>
+                                            <label for="laboratorio">Laboratorio<span class="required">*</span></label>
+                                            <select required="required" class="form-control" id="laboratorio"
+                                                    name="laboratorio"></select>
                                         </div>
                                     </div>
                                     <div th:replace="fragments/lab_form :: lab_form"/>
@@ -76,8 +76,8 @@
                     <!--tabla para consultar existentes-->
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Lista de laboratorios
-                                <small>Tabla con los laboratorios registrados</small>
+                            <h2>Lista de sedes por laboratorio
+                                <small>Tabla con las sedes registradas</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -94,6 +94,7 @@
                                 <thead>
                                 <tr>
                                     <th>Numero ID</th>
+                                    <th>Laboratorio</th>
                                     <th>Razon Social</th>
                                     <th>Nombre Comercial</th>
                                     <th>Pais</th>
@@ -104,7 +105,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Para Listar los laboratorios-->
+                                <!-- Para Listar los laboratorios-->
                                 </tbody>
                             </table>
                         </div>
