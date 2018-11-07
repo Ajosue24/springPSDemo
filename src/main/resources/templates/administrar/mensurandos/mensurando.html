@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Mensuarandos</title>
+
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+
+		<div class="right_col" role="main">
+			<div class="">
+				<div class="page-title">
+					<div class="title_left">
+						<h3>Administre Mensurandos</h3>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<!--inicio Formulario-->
+						<div class="x_panel">
+							<div class="x_title">
+								<h2>
+									Agregar / Editar mensuarando <small>Añada o consulte los
+										mensurandos</small>
+								</h2>
+								<ul class="nav navbar-right panel_toolbox">
+									<li><a class="collapse-link"><i
+											class="fa fa-chevron-up"></i></a></li>
+								</ul>
+								<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+								<!-- <br/>-->
+								<div class="col-md-10 col-md-offset-1">
+
+									<form id="" class="form-horizontal form-label-left" action="#">
+
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12"
+												for="nombre">Programa<span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<select class="form-control">
+													<option>Química</option>
+												</select>
+											</div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12"
+												for="unidades_medida">Unidad de medida<span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<select class="form-control">
+													<option>mg</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12"
+												for="nombre">Nombre<span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="nombre" name="nombre"
+													required="required" class="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12"
+												for="nombre">Abreviatura<span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id=abreviatura name="abreviatura"
+													required="required" class="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12"
+												for="nombre">Orden<span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id=orden name="orden" required="required"
+													class="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">Habilitado
+											</label>
+											<p>
+												Si: <input type="radio" class="flat" name="estado"
+													id="estadoT" value="true" required /> No: <input
+													type="radio" class="flat" name="estado" id="estadoF"
+													value="false" />
+											</p>
+										</div>
+
+										<div class="form-group">
+											<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+												<button th:type="submit" th:id="cancelar"
+													class="btn btn-primary" type="reset" th:name="cancelar"
+													th:value="cancel" formnovalidate>Cancelar</button>
+												<button th:type="submit" th:id="save"
+													class="btn btn-success" th:name="action" th:value="Guardar">Guardar
+												</button>
+											</div>
+										</div>
+
+
+									</form>
+
+								</div>
+
+							</div>
+						</div>
+						<!--tabla para consultar existentes-->
+						<div class="x_panel">
+							<div class="x_title">
+								<h2>
+									Lista de mensurandos<small>Tabla con mensurandos
+										Registrados</small>
+								</h2>
+								<ul class="nav navbar-right panel_toolbox">
+									<li><a class="collapse-link"><i
+											class="fa fa-chevron-up"></i></a></li>
+								</ul>
+								<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+								<p class="text-muted font-13 m-b-30">Seleccione el mensuarando
+									que desea editar</p>
+								<table id="datatable-responsive"
+									class="table table-striped table-bordered dt-responsive nowrap"
+									cellspacing="0" width="100%">
+									<thead>
+										<tr>
+                                            <th>Numero ID</th>                                            
+                                            <th>Unidad de medida</th>                                            
+											<th>Abreviatura</th>
+											<th>Nombre</th>
+											<th>Programa</th>
+											<th>Estado</th>
+											<th>Editar</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td >1</td>
+											<td >mg</td>
+											<td >M1</td>
+											<td >MENSURANDO 1</td>
+											<td >Química</td>
+											<td >
+												<span class="label label-success pull-right">Activo</span>											
+											</td>
+											<td><a
+												
+												class="btn btn-round btn-info btn-xs"><i
+													class="fa fa-wrench"></i> Editar </a></td>
+										</tr>
+
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--fin tabla para consultar existentes-->
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
