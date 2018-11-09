@@ -1743,11 +1743,17 @@ if (typeof NProgress != 'undefined') {
 			  console.log(start.toISOString(), end.toISOString(), label);
 			});
 			$('#single_cal3').daterangepicker({
-			  singleDatePicker: true,
-			  singleClasses: "picker_3"
-			}, function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
-			});
+                singleDatePicker: true,
+                singleClasses: "picker_3"
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            $('.calendarPicker').daterangepicker({
+                singleDatePicker: true,
+                singleClasses: "picker_3"
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
 			$('#single_cal4').daterangepicker({
 			  singleDatePicker: true,
 			  singleClasses: "picker_4"
