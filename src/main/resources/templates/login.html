@@ -36,20 +36,21 @@
                 />
             </g>
             </img>
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Usuario o Contraseña Invalida.
+                </div>
+            </div>
+            <div th:if="${param.logout}">
+                <div class="alert alert-info">
+                    You have been logged out.
+                </div>
+            </div>
         </div>
+
         <form th:action="@{/login}" method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <div class="login-form">
-                <div th:if="${param.error}">
-                    <div class="alert alert-danger">
-                        Usuario o Contraseña Invalida.
-                    </div>
-                </div>
-                <div th:if="${param.logout}">
-                    <div class="alert alert-info">
-                        You have been logged out.
-                    </div>
-                </div>
                 <div class="username-row row">
                     <img src="../../images/usericon.png" class="icon">
                     <input type="text" name="username" id="username" placeholder="Usuario"
