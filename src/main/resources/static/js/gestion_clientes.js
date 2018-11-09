@@ -4,7 +4,7 @@
             source: function (request, response) {
                 var desPais = $('#desPais').val();
                 $.ajax({
-                    url: '/restC/autoCompPais/' + desPais,
+                    url: '/rest/autoCompPais/' + desPais,
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (data) {

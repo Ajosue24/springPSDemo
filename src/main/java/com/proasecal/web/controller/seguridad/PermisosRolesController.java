@@ -40,6 +40,7 @@ public class PermisosRolesController {
         modelAndView.addObject("permisosRolesForm", new Permisos());
         modelAndView.addObject("listaModulos",listaModulos);
         modelAndView.addObject("modulosForm",new Modulos());
+        listaRoles.removeIf(t->t.getNombreRol().equalsIgnoreCase("ADMIN"));
         modelAndView.addObject("listaRoles",listaRoles);
         return modelAndView;
     }

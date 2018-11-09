@@ -1,6 +1,7 @@
 package com.proasecal.web.controller;
 
 import com.proasecal.web.service.seguridad.PermisoService;
+import com.proasecal.web.service.seguridad.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,9 @@ public class AccessController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+
+	@Autowired
+    RolService rolService;
 
 
 
@@ -67,6 +71,16 @@ public class AccessController {
 
     }
 
+    @GetMapping("/login2")
+    public String login2() {
+        return "login2";
+    }
+
+
+    @GetMapping("/login3")
+    public String login3() {
+        return "login3";
+    }
 
 }
 

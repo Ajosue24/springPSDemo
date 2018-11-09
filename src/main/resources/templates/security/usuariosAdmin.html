@@ -8,22 +8,38 @@
 <body>
 
 	<div layout:fragment="content" class="container mySpace">
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+
+            var idParticipante = /*[[${idParticipante}]]*/ 'default';
+
+            $( document ).ready(function() {
+                validarRolesSeleccionados();
+                $( "#pre-selected-options" ).change(function() {
+                    validarRolesSeleccionados();
+                    if(idParticipante > 0) {
+                        if ($("#pre-selected-options").val() != null && $("#pre-selected-options").val().length > 1) {
+                            if ($("#pre-selected-options").val() != null && $("#pre-selected-options").val().indexOf('' + idParticipante + '') >= 0) {
+                                $('#pre-selected-options').multiSelect('deselect_all');
+                                $('#pre-selected-options').multiSelect('select', (['' + idParticipante + '']));
+                                validarRolesSeleccionados();
+                            }
+                        }
+                    }
+                });
+            });
+
+            /*]]>*/
+		</script>
 		<div class="right_col" role="main">
 			<!-- top tiles -->
 			<div class="row">
 				<div>
-
-					<!--<div sec:authorize="${hasRole(T(com.example.demo.controller.security.RolesAccess).devolverRol('vista1'))}">
-                    CUALQUIER ROLL
-                </div>-->
-
 					<div class="page-title">
 						<div class="title_left">
 							<h3>Administrador Usuario</h3>
 						</div>
 					</div>
-
-
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<!--inicio Formulario-->
@@ -69,7 +85,17 @@
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<input type="password" id="password" name="password"
 													required="required" class="form-control col-md-7 col-xs-12"
-													th:field="*{password}" />
+													th:value="*{password}" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12"
+												   for="password2">Valide Contraseña<span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="password" id="password2" name="password2"
+													   th:value="*{password}"
+													   required="required" class="form-control col-md-7 col-xs-12" data-validate-linked="password" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -104,7 +130,7 @@
 												   class="label label-danger" th:errors="*{codProasecal}">Incorrect</p>
 											</div>
 										</div>
-										<div class="form-group">
+										<!--<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
 												for="correo">Correo<span class="required">*</span>
 											</label>
@@ -113,7 +139,7 @@
 													required="required" class="form-control col-md-7 col-xs-12"
 													th:field="*{correo}" />
 											</div>
-										</div>
+										</div>-->
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Habilitado
 											</label>
@@ -124,6 +150,8 @@
 													id="estadoF" value="false" th:checked="*{estado} == false" />
 											</p>
 										</div>
+
+
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
 												for="codProasecal">Gestion Roles</label>
@@ -145,7 +173,7 @@
 											</div>
 										</div>
 
-										<div class="form-group">
+										<div class="form-group"  sec:authorize="${hasAnyRole(T(com.proasecal.web.controller.seguridad.RolesAccess).permisosPermitidos('/usuarios/save'))}">
 											<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 												<button th:type="submit" th:id="cancelar"
 													class="btn btn-primary" type="reset" th:name="cancelar"
@@ -203,10 +231,10 @@
 												<td th:text="${listaUsuarios.nombreUsuario}"></td>
 												<td th:text="${listaUsuarios.nombres}"></td>
 												<td th:text="${listaUsuarios.apellidos}"></td>
-												<td th:text="${listaUsuarios.estado}"></td>
+												<td th:text="${listaUsuarios.estado == false?'Deshabilitado':'Habilitado'}"></td>
 												<td th:text="${listaUsuarios.codProasecal}"></td>
 												<td th:text="${listaUsuarios.correo}"></td>
-												<td><a
+												<td sec:authorize="${hasAnyRole(T(com.proasecal.web.controller.seguridad.RolesAccess).permisosPermitidos('/usuarios/update/'))}"><a
 													th:href="@{/usuarios/update/} + ${listaUsuarios.idUsuario}"
 													class="btn btn-round btn-info btn-xs"><i
 														class="fa fa-wrench"></i> Editar </a></td>
@@ -241,6 +269,7 @@
 		<script src="../../js/usuarios_admin.js"></script>
 		<link href="../../css/usuarios_admin.css" rel="stylesheet">
 		<script src="../../js/dragg/jquery.multi-select.js"></script>
+
 		<script type="text/javascript">
 			// run pre selected options
 			$('#pre-selected-options').multiSelect();

@@ -41,7 +41,11 @@ public class UsuariosController {
         modelAndView.addObject("usuariosForm", new Usuarios());
         modelAndView.addObject("listaUsuarios", listaUsuarios);
         modelAndView.addObject("listaRoles", listaRoles);
-
+        Roles roles=listaRoles.stream()
+                .filter(rolName -> rolName.getCodigoProasecal())
+                .findAny()
+                .orElse(new Roles());
+        modelAndView.addObject("idParticipante", roles.getIdRoles());
 
 
         return modelAndView;
@@ -57,21 +61,27 @@ public class UsuariosController {
         if(cancelar!=null){
             return new ModelAndView("redirect:/usuarios");
         }
-
-        if(usuarioService.validarUsuarioExistente(usuariosForm.getNombreUsuario())){
+;
+        if(usuarioService.validarUsuarioExistente(usuariosForm.getNombreUsuario())&&usuariosForm.getIdUsuario()==0){
             bindingResult.rejectValue("nombreUsuario", "error", env.getProperty("msg.nombreExistente"));
         }else if(usuariosForm.getCodProasecal()!=null&& usuariosForm.getCodProasecal()>1){
-            if(usuarioService.validarCodProasecalExistente(usuariosForm.getCodProasecal())){
+            if(usuarioService.validarCodProasecalExistente(usuariosForm.getCodProasecal())&&
+                    usuarioService.get(usuariosForm.getIdUsuario()).getIdUsuario()==usuariosForm.getIdUsuario()){
                 bindingResult.rejectValue("codProasecal", "error", env.getProperty("msg.codigoExistente"));
             }
         }
         if(bindingResult.hasErrors()){
-            model.setViewName("usuariosAdmin");
+            model.setViewName("security/usuariosAdmin");
             List<Usuarios>listaUsuarios = usuarioService.list();
             List<Roles> listaRoles = rolService.obtenerListaRoles();
             model.addObject("usuariosForm", usuariosForm);
             model.addObject("listaUsuarios", listaUsuarios);
             model.addObject("listaRoles", listaRoles);
+            Roles roles=listaRoles.stream()
+                    .filter(rolName -> rolName.getCodigoProasecal())
+                    .findAny()
+                    .orElse(new Roles());
+            model.addObject("idParticipante", roles.getIdRoles());
             return model;
         }
         usuariosForm.setPassword(new BCryptPasswordEncoder().encode(usuariosForm.getPassword()));
@@ -89,6 +99,11 @@ public class UsuariosController {
         modelAndView.addObject("listaUsuarios", listaUsuarios);
         modelAndView.addObject("listaRoles", listaRoles);
         modelAndView.addObject("usuariosForm",user);
+        Roles roles=listaRoles.stream()
+                .filter(rolName -> rolName.getCodigoProasecal())
+                .findAny()
+                .orElse(new Roles());
+        modelAndView.addObject("idParticipante", roles.getIdRoles());
         return modelAndView;
     }
 

@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -65,6 +66,7 @@ public class Permisos {
 //DEPENDENCIAS
     @ManyToOne
     @JoinColumn(name = "id_modulos")
+    @Null
     private Modulos idModulos;
 
     @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)

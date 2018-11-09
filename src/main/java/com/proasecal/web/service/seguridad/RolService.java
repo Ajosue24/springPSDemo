@@ -37,6 +37,10 @@ public class RolService {
         return rolesRepository.findByNombreRol(nombreRol);
     }
 
+    public Boolean validarSiExisteRolParaLab(){
+        return rolesRepository.existsByCodigoProasecalIsTrue();
+    }
+
 
 
 }

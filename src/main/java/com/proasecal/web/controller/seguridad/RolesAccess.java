@@ -45,5 +45,30 @@ public class RolesAccess {
         return lista;
     }
 
+    /**
+     * Se valida si usuario puede obtener acceso a funcionalidades o PERMISOS
+     */
+    /**
+     * Atributo Que indica si usuario puede ver el modulo
+     */
+    public static List<String> permisosPermitidos(String url){
+        Optional<List<Permisos>> collectPermissions = Util.userPermissions();
+        List<String> lista = new ArrayList<>();
+        if(collectPermissions.isPresent()) {
+            Boolean isPermission = collectPermissions.get().stream().anyMatch(permisos -> permisos.getUrl().equals(url));
+            if(!isPermission) {
+            }else {
+                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                authentication.getAuthorities().forEach(l->lista.add(l.getAuthority()));
+                for(GrantedAuthority g :authentication.getAuthorities()){
+                    lista.add(g.getAuthority());
+                }
+                return lista;
+                //LOG.info("si tiene permisos para acceder a "+nombreModulo);
+            }
+        }
+
+        return lista;
+    }
 
 }

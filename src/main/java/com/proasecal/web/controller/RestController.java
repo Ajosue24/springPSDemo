@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
-@RequestMapping(value="/restC")
+@RequestMapping(value="/rest")
 public class RestController {
 
     @Autowired

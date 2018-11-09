@@ -45,11 +45,13 @@ public class RolesController {
     public ModelAndView updateRoles(@Valid @ModelAttribute("rolesForm")Roles rolesForm, BindingResult bindingResult,
                                     ModelAndView model){
         rolesForm.setNombreRol(rolesForm.getNombreRol().toUpperCase().trim());
-        if (rolService.validarSiExisteRol(rolesForm.getNombreRol())){
+        if (rolService.validarSiExisteRol(rolesForm.getNombreRol())&&rolesForm.getIdRoles()==0){
             bindingResult.rejectValue("nombreRol", "error", env.getProperty("msg.nombreExistente"));
+        }else if(rolService.validarSiExisteRolParaLab()&&rolesForm.getCodigoProasecal()){
+            bindingResult.rejectValue("codigoProasecal", "error","Ya existe un rol para laboratorios");
         }
         if(bindingResult.hasErrors()){
-            model.setViewName("rolesAdmin");
+            model.setViewName("security/rolesAdmin");
             model.addObject("rolesForm", rolesForm);
             model.addObject("listaRoles", rolService.obtenerListaRoles());
             return model;

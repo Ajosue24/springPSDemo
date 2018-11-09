@@ -42,6 +42,9 @@ public class Roles {
     @Column(name = "b_estado")
     private Boolean estado = true;
 
+    @Column(name = "b_cod_proasecal")
+    private Boolean codigoProasecal = false;
+
     @ManyToMany(mappedBy = "rolesList")
     private List<Usuarios> usuariosList = new ArrayList<>();
 
@@ -114,5 +117,13 @@ public class Roles {
 
     public void setModulosList(List<Modulos> modulosList) {
         this.modulosList = modulosList;
+    }
+
+    public Boolean getCodigoProasecal() {
+        return codigoProasecal;
+    }
+
+    public void setCodigoProasecal(Boolean codigoProasecal) {
+        this.codigoProasecal = codigoProasecal;
     }
 }

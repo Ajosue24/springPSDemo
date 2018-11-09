@@ -2,6 +2,7 @@ package com.proasecal.web.entity.administrar;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.proasecal.web.entity.parametricas.Ciudad;
 import com.proasecal.web.entity.parametricas.Departamentos;
 import com.proasecal.web.entity.parametricas.Pais;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -29,18 +31,18 @@ public class Clientes {
 
 
     @Id
-    @Column(name = "ID_CLIENTES",columnDefinition = "serial")
+    @Column(name = "id_clientes",columnDefinition = "serial")
     @GeneratedValue(generator = "clienteGenerator")
     private long clienteId;
 
     @ManyToOne
-    @JoinColumn(name = "ID_PAIS")
+    @JoinColumn(name = "id_pais")
     @NotNull
     @JsonBackReference
     private Pais idPais;
 
     @ManyToOne
-    @JoinColumn(name = "ID_TIPO_DOCUMENTO_PAIS")
+    @JoinColumn(name = "id_tipo_documento_pais")
     @NotNull
     @JsonBackReference
     private TipoDocumentoPais idTipoPais;
@@ -89,6 +91,10 @@ public class Clientes {
     @Column(name = "D_FECHA_CREACION")
     @CreationTimestamp
     private Date fechaCreacion;
+
+    @OneToMany(mappedBy = "clienteId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<LaboratoriosSedes> LaboratoriosSedesList;
 
     public long getClienteId() {
         return clienteId;

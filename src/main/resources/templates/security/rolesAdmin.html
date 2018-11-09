@@ -71,6 +71,19 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Aplica Codigo Proasecal
+                                        </label>
+                                        <p>
+                                            Si: <input type="radio" class="flat" name="codigoProasecal"
+                                                       id="codigoProasecalT" value="true" th:checked="*{codigoProasecal}" required />
+                                            No: <input type="radio" class="flat" name="codigoProasecal"
+                                                       id="codigoProasecalF" value="false" th:checked="*{codigoProasecal} == false" />
+                                        <p th:if="${#fields.hasErrors('codigoProasecal')}"
+                                        class="col-md-offset-3 label label-danger" th:errors="*{codigoProasecal}">Incorrect</p>
+                                        </p>
+                                    </div>
+
+                                    <div class="form-group" sec:authorize="${hasAnyRole(T(com.proasecal.web.controller.seguridad.RolesAccess).permisosPermitidos('/roles/guardarRol'))}">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                             <button th:type="submit" th:id="cancel" class="btn btn-primary" type="reset"
                                                     th:name="action" th:value="cancel">Cancelar
@@ -115,8 +128,8 @@
                                     <tr th:each="listaRoles : ${listaRoles}" >
                                         <td th:text="${listaRoles.nombreRol}"></td>
                                         <td th:text="${listaRoles.descripcion}"></td>
-                                        <td th:text="${listaRoles.estado}"></td>
-                                        <td>
+                                        <td th:text="${listaRoles.estado == false?'Deshabilitado':'Habilitado'}"></td>
+                                        <td sec:authorize="${hasAnyRole(T(com.proasecal.web.controller.seguridad.RolesAccess).permisosPermitidos('/roles/updateRoles/'))}">
                                             <a th:href="@{/roles/updateRoles/} + ${listaRoles.idRoles}" class="btn btn-round btn-info btn-xs"><i class="fa fa-wrench"></i> Editar </a></td>
                                     </tr>
 
@@ -133,29 +146,6 @@
 </div>
 <div layout:fragment="customjs">
 
-    <!-- Datatables -->
-    <link href="../../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="../../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="../../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="../../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="../../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
-    <!-- Datatables -->
-    <script src="../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="../../vendors/jszip/dist/jszip.min.js"></script>
-    <script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
 </div>
 </body>
 </html>

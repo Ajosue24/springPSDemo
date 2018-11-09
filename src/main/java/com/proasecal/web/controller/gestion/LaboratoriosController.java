@@ -1,12 +1,7 @@
 package com.proasecal.web.controller.gestion;
 
-import com.proasecal.web.entity.administrar.Clientes;
-import com.proasecal.web.entity.parametricas.Ciudad;
-import com.proasecal.web.entity.parametricas.Departamento;
-import com.proasecal.web.entity.parametricas.Pais;
-import com.proasecal.web.entity.parametricas.TipoDocumentoPais;
 
-import com.proasecal.web.service.administrar.ClienteService;
+
 import com.proasecal.web.service.parametricas.DepartamentoService;
 import com.proasecal.web.service.parametricas.IdTipoPaisService;
 import com.proasecal.web.service.parametricas.PaisService;

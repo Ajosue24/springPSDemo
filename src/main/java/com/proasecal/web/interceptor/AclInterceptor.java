@@ -22,34 +22,38 @@ public class AclInterceptor extends HandlerInterceptorAdapter{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
- 
-        
-        
         String url = request.getRequestURI();
-        
-    	Optional<List<Permisos>> collectPermisos = Util.userPermissions();
-    	
-    	if(collectPermisos.isPresent()) {
-    		Boolean isPermission = collectPermisos.get().stream().anyMatch(permiso -> permiso.getUrl().equals(url));
-    		if(!isPermission) {
-    			LOG.info("no tiene permisos para acceder a "+url); 
-    			throw new RuntimeException("error");
-    		}else {
-    			LOG.info("si tiene permisos para acceder a "+url);
-    		}
-    	}      
- 
+        //Indica si es un atributo del front si es asi no se valida
+        Boolean isFrontValue=Util.ifJsorCssorJpg(url);
+        if(!isFrontValue){
+            url = url.matches(".*\\d+.*")?Util.removeIdFromUrl(url):url;
+            if(!url.contains("/login")) {
+                Optional<List<Permisos>> collectPermisos = Util.userPermissions();
+                if (collectPermisos.isPresent()) {
+                    String finalUrl = url;
+                    Boolean isPermission = collectPermisos.get().stream().anyMatch(
+                            permiso -> permiso.getUrl().equals(finalUrl)||Util.urlCompareUrlDB(permiso.getUrl(),finalUrl));
+                    if (!isPermission) {
+                        LOG.info("no tiene permisos para acceder a " + url);
+                        throw new RuntimeException("error");
+                    } else {
+                        LOG.info("si tiene permisos para acceder a " + url);
+                    }
+                }
+            }
+        }
         //response.sendRedirect(request.getContextPath() + "/login");
         return true;
     }
  
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, //
-            Object handler, ModelAndView modelAndView) throws Exception { 
+            Object handler, ModelAndView modelAndView) throws Exception {
     }
  
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, //
             Object handler, Exception ex) throws Exception {
     }
+
 }

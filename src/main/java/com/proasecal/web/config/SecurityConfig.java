@@ -32,8 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     
     @Autowired
     private CustomUserDetailsService userDetailsService;
@@ -54,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(new BCryptPasswordEncoder());*/
 
     	auth.userDetailsService(userDetailsService)
-		.passwordEncoder(passwordEncoder());
+		.passwordEncoder(new BCryptPasswordEncoder());
     	
     }
     
@@ -71,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          * Org Work 23/10/18
          */
         http.cors().and();
-        http.csrf().disable().authorizeRequests().antMatchers("/register", "/",
+        http.csrf().disable().authorizeRequests().antMatchers("/login2","/login3", "/",
                 "/images/**", "/login", "/css/**", "/js/**","/vendors/**","/build/**", "/webjars/**").permitAll() //Aqui le decimos que permita las carpetas de stylos y js para que sean publicos
         		.anyRequest().authenticated()
                 .and()

@@ -32,8 +32,8 @@ public class Bootstrap implements InitializingBean {
     @Autowired
     private UsuarioService usuarioService;
     
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+   /* @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;*/
 
     @Autowired
     private RolService rolService;
@@ -63,7 +63,7 @@ public class Bootstrap implements InitializingBean {
 
     }
     
-    public void createUserAndRol() {
+   /* public void createUserAndRol() {
 
     	Usuarios user = new Usuarios();
     	
@@ -111,5 +111,5 @@ public class Bootstrap implements InitializingBean {
         permisos1.add(new Permisos("Listar programas","Listar Programas","/programas",moduloSeguridad,permisos,rolesList));
         permisoService.guardarPermisos(permisos1);
     }
-
+*/
 }

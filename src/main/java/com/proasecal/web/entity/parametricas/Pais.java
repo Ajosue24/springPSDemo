@@ -4,6 +4,7 @@ package com.proasecal.web.entity.parametricas;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.proasecal.web.entity.administrar.Clientes;
+import com.proasecal.web.entity.administrar.LaboratoriosSedes;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -25,15 +26,15 @@ public class Pais {
     )
 
     @Id
-    @Column(name = "ID_PAIS")
+    @Column(name = "id_pais",columnDefinition = "serial")
     @GeneratedValue(generator = "paisGenerator")
     private long idPais;
 
-    @Column(name = "V_NOMBRE")
+    @Column(name = "v_nombre")
     @NotNull
     private String nombrePais;
 
-    @Column(name = "B_ESTADO")
+    @Column(name = "b_estado")
     private Boolean estado;
 
 
@@ -48,6 +49,10 @@ public class Pais {
     @OneToMany(mappedBy = "idPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<TipoDocumentoPais> tipoDocumentoPaisList;
+
+    @OneToMany(mappedBy = "idPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<LaboratoriosSedes> LaboratoriosSedesList;
 
     public long getIdPais() {
         return idPais;

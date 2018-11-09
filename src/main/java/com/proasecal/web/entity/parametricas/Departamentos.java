@@ -4,6 +4,7 @@ package com.proasecal.web.entity.parametricas;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.proasecal.web.entity.administrar.Clientes;
+import com.proasecal.web.entity.administrar.LaboratoriosSedes;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -27,18 +28,18 @@ public class Departamentos {
 
 
     @Id
-    @Column(name = "ID_DEPARTAMENTOS")
+    @Column(name = "id_departamentos")
     @GeneratedValue(generator = "departamentoGenerator")
     private long idDepartamentos;
 
 
-    @Column(name = "V_DESCRIPCION")
+    @Column(name = "v_descripcion")
     @NotNull
     private String descripcionDepartamento;
 
 
     @ManyToOne
-    @JoinColumn(name = "ID_PAIS")
+    @JoinColumn(name = "id_pais")
     @JsonBackReference
     private Pais idPais;
 
@@ -50,6 +51,10 @@ public class Departamentos {
     @OneToMany(mappedBy = "idDepartamentos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Clientes> listaClientes;
+
+    @OneToMany(mappedBy = "idDepartamentos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<LaboratoriosSedes> LaboratoriosSedesList;
 
     public long getIdDepartamentos() {
         return idDepartamentos;
