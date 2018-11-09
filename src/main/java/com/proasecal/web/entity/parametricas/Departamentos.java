@@ -33,14 +33,13 @@ public class Departamentos {
     private long idDepartamentos;
 
 
-    @Column(name = "v_descripcion")
+    @Column(name = "v_nombre")
     @NotNull
-    private String descripcionDepartamento;
+    private String nombreDepartamento;
 
 
     @ManyToOne
     @JoinColumn(name = "id_pais")
-    @JsonBackReference
     private Pais idPais;
 
 
@@ -64,12 +63,12 @@ public class Departamentos {
         this.idDepartamentos = idDepartamentos;
     }
 
-    public String getDescripcionDepartamento() {
-        return descripcionDepartamento;
+    public String getNombreDepartamento() {
+        return nombreDepartamento;
     }
 
-    public void setDescripcionDepartamento(String descripcionDepartamento) {
-        this.descripcionDepartamento = descripcionDepartamento;
+    public void setNombreDepartamento(String nombreDepartamento) {
+        this.nombreDepartamento = nombreDepartamento;
     }
 
     public Pais getIdPais() {
@@ -94,5 +93,13 @@ public class Departamentos {
 
     public void setListaClientes(List<Clientes> listaClientes) {
         this.listaClientes = listaClientes;
+    }
+
+    public List<LaboratoriosSedes> getLaboratoriosSedesList() {
+        return LaboratoriosSedesList;
+    }
+
+    public void setLaboratoriosSedesList(List<LaboratoriosSedes> laboratoriosSedesList) {
+        LaboratoriosSedesList = laboratoriosSedesList;
     }
 }

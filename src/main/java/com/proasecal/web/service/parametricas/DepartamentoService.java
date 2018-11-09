@@ -20,7 +20,7 @@ public class DepartamentoService {
     DepartamentoRepository departamentoRepository;
 
     public List<Departamentos> obtenerDepartamentoXPais(Pais pais){
-        return departamentoRepository.findDepartamentoByIdPais(pais);
+        return departamentoRepository.findDepartamentosByIdPais(pais);
     }
 
 

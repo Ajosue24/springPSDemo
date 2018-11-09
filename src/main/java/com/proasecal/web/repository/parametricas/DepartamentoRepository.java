@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface DepartamentoRepository extends CrudRepository<Departamentos,Long> {
 
-    List<Departamentos> findDepartamentoByIdPais(Pais pais);
+    List<Departamentos> findDepartamentosByIdPais(Pais pais);
 }
 

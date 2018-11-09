@@ -8,6 +8,7 @@ import com.proasecal.web.entity.parametricas.Departamentos;
 import com.proasecal.web.entity.parametricas.Pais;
 import com.proasecal.web.entity.parametricas.TipoDocumentoPais;
 import com.proasecal.web.service.administrar.ClienteService;
+import com.proasecal.web.service.parametricas.CiudadService;
 import com.proasecal.web.service.parametricas.DepartamentoService;
 import com.proasecal.web.service.parametricas.IdTipoPaisService;
 import com.proasecal.web.service.parametricas.PaisService;
@@ -30,6 +31,10 @@ public class GestionClientes {
     IdTipoPaisService idTipoPaisService;
     @Autowired
     DepartamentoService departamentoService;
+
+    @Autowired
+    CiudadService ciudadService;
+
     @Autowired
     ClienteService clienteService;
 
@@ -129,6 +134,24 @@ public class GestionClientes {
         model.addAttribute("models2", models);
         return "administrar/gestion_clientes :: models2";
     }
+
+
+    /**
+     * Obtener departamentos
+     * @param idDepartamento
+     * @param model
+     * @return
+     */
+    @RequestMapping("/obtCiudades")
+    public String obtenerCiudadesxDepartamentos(@RequestParam("idDepartamento") String idDepartamento, Model model) {
+        Departamentos departamentos = new Departamentos();
+        departamentos.setIdDepartamentos(Long.valueOf(idDepartamento).longValue());
+        List<Ciudad> models = ciudadService.obtenerCiudadxDepartamento(departamentos);
+        model.addAttribute("models3", models);
+        return "administrar/gestion_clientes :: models3";
+    }
+
+
 
 }
 

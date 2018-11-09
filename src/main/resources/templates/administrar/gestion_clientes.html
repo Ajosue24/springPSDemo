@@ -84,7 +84,7 @@
                                         <select th:field="*{idDepartamentos}" required="required" class="form-control">
                                             <option th:fragment="models2" th:each="model : ${models2}"
                                                     th:value="${model.idDepartamentos}"
-                                                    th:text="${model.descripcionDepartamento}"/>
+                                                    th:text="${model.nombreDepartamento}"/>
                                         </select>
                                     </div>
 
@@ -92,8 +92,8 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                     <label th:for="txtCiudad">Ciudad<span class="required">*</span> </label>
                                         <select th:field="*{idCiudad}"  class="form-control">
-                                            <option th:fragment="models2" th:each="model : ${models3}"
-                                                    th:value="${model.idCiudad}" th:text="${model.descripcionCiudad}"/>
+                                            <option th:fragment="models3" th:each="model : ${models3}"
+                                                    th:value="${model.idCiudad}" th:text="${model.nombreCiudad}"/>
                                         </select>
                                 </div>
                                 </div>
@@ -221,7 +221,7 @@
                                     <td th:text="${clientes.razonSocial}"></td>
                                     <td th:text="${clientes.nombreComercial}"></td>
                                     <td th:text="${clientes.idPais.nombrePais}"></td>
-                                    <td th:text="${clientes.idDepartamentos.descripcionDepartamento}"></td>
+                                    <td th:text="${clientes.idDepartamentos.nombreDepartamento}"></td>
                                     <td th:text="${clientes.correoCliente}"></td>
                                     <td th:text="${clientes.telefonoCliente}"></td>
                                     <td>

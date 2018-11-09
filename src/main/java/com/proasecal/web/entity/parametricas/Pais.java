@@ -2,6 +2,7 @@ package com.proasecal.web.entity.parametricas;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.proasecal.web.entity.administrar.Clientes;
 import com.proasecal.web.entity.administrar.LaboratoriosSedes;
@@ -34,12 +35,15 @@ public class Pais {
     @NotNull
     private String nombrePais;
 
+    @Column(name = "v_inicial")
+    private String inicialPais;
+
     @Column(name = "b_estado")
     private Boolean estado;
 
 
     @OneToMany(mappedBy = "idPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonIgnore
     private List<Departamentos> departamentoList;
 
     @OneToMany(mappedBy = "idPais", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -100,5 +104,21 @@ public class Pais {
 
     public void setTipoDocumentoPaisList(List<TipoDocumentoPais> tipoDocumentoPaisList) {
         this.tipoDocumentoPaisList = tipoDocumentoPaisList;
+    }
+
+    public String getInicialPais() {
+        return inicialPais;
+    }
+
+    public void setInicialPais(String inicialPais) {
+        this.inicialPais = inicialPais;
+    }
+
+    public List<LaboratoriosSedes> getLaboratoriosSedesList() {
+        return LaboratoriosSedesList;
+    }
+
+    public void setLaboratoriosSedesList(List<LaboratoriosSedes> laboratoriosSedesList) {
+        LaboratoriosSedesList = laboratoriosSedesList;
     }
 }

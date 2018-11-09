@@ -32,9 +32,9 @@ public class Ciudad {
     @GeneratedValue(generator = "ciudadGenerator")
     long idCiudad;
 
-    @Column(name = "v_descripcion")
+    @Column(name = "v_nombre")
     @NotNull
-    String descripcionCiudad;
+    private String nombreCiudad;
 
     @ManyToOne
     @JoinColumn(name = "id_departamentos")
@@ -60,12 +60,12 @@ public class Ciudad {
     }
 
 
-    public String getDescripcionCiudad() {
-        return descripcionCiudad;
+    public String getNombreCiudad() {
+        return nombreCiudad;
     }
 
-    public void setDescripcionCiudad(String descripcionCiudad) {
-        this.descripcionCiudad = descripcionCiudad;
+    public void setNombreCiudad(String nombreCiudad) {
+        this.nombreCiudad = nombreCiudad;
     }
 
     public Departamentos getIdDepartamento() {
