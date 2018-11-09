@@ -1,5 +1,7 @@
 package com.proasecal.web.controller;
 
+import com.proasecal.web.service.seguridad.PermisoService;
+import com.proasecal.web.service.seguridad.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,9 @@ public class AccessController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	@Autowired
+    RolService rolService;
+
 
 
     @GetMapping("/index")
@@ -29,7 +34,6 @@ public class AccessController {
     }
     @PostMapping("/index")
     public ModelAndView postIndex() {
-        //Aqui valido a los caraeCornflakes
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("rol","ADMIN");
         return modelAndView;
@@ -37,7 +41,6 @@ public class AccessController {
     @GetMapping("/login")
     public ModelAndView login(@RequestParam(value = "logout", required = false) String logout) {
         ModelAndView model = new ModelAndView();
-        Usuarios usuario = this.usuarioService.get(1L);
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
@@ -57,6 +60,8 @@ public class AccessController {
 
     @GetMapping("/")
     public String home() {
+
+        //throw new RuntimeException("error");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication.getAuthorities().stream()
                 .anyMatch(r -> r.getAuthority().equals("ROLE_ANONYMOUS"))){
@@ -66,8 +71,16 @@ public class AccessController {
 
     }
 
+    @GetMapping("/login2")
+    public String login2() {
+        return "login2";
+    }
 
 
+    @GetMapping("/login3")
+    public String login3() {
+        return "login3";
+    }
 
 }
 

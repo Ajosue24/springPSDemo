@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -23,7 +24,14 @@ public class ModuloService {
       return moduloRepository.findById(id).get();
     }
 
-    public void guardarModulos(Modulos modulos){
+    public void guardarModulo(Modulos modulos){
        moduloRepository.save(modulos);
+    }
+
+    public Modulos obtenerModuloPorNombre(String nombreModulo){
+       return moduloRepository.findByNombreModulo(nombreModulo);
+    }
+    public void guardarModulos(Set<Modulos> modulosList){
+       moduloRepository.saveAll(modulosList);
     }
 }

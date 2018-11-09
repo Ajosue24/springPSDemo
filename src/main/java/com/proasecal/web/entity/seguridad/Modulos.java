@@ -14,6 +14,20 @@ import java.util.Set;
 @Table(name = "MODULOS")
 public class Modulos {
 
+    public Modulos(Long idModulos){
+        this.idModulos = idModulos;
+
+    }
+
+    public Modulos(@NotNull String nombreModulo, String descripcion, Set<Roles> rolesList) {
+        this.nombreModulo = nombreModulo;
+        this.descripcion = descripcion;
+        this.rolesList = rolesList;
+    }
+
+    public Modulos() {
+    }
+
     @GenericGenerator(
             name = "modulosGenerator",
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
@@ -41,7 +55,7 @@ public class Modulos {
     private List<Permisos> permisosList;
 
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name="MODULOS_X_ROLES", joinColumns=@JoinColumn(name="id_modulos"), inverseJoinColumns=@JoinColumn(name="id_roles"))
     private Set<Roles> rolesList;
 

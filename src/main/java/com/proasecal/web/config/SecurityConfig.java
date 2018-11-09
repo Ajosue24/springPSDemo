@@ -3,6 +3,7 @@ package com.proasecal.web.config;
 
 import com.proasecal.web.filter.AclFilter;
 import com.proasecal.web.service.seguridad.CustomUserDetailsService;
+import com.proasecal.web.service.seguridad.PermisoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,11 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     
     @Autowired
     private CustomUserDetailsService userDetailsService;
+    
+    @Autowired
+    PermisoService permisoService;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -44,9 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        /*auth.inMemoryAuthentication()
+                .withUser("admin").password("$2a$10$2Bh/CFmuoofz2uPdDsuw4.FgvlDwk10t905WhUZgkD.EFtLrx6gAO").roles("ADMIN")
+                .and()
+                .passwordEncoder(new BCryptPasswordEncoder());*/
 
     	auth.userDetailsService(userDetailsService)
-		.passwordEncoder(passwordEncoder());
+		.passwordEncoder(new BCryptPasswordEncoder());
     	
     }
     
@@ -63,8 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          * Org Work 23/10/18
          */
         http.cors().and();
-        http.csrf().disable().authorizeRequests().antMatchers("/register", "/",
-                "/images/**", "/login", "/css/**", "/js/**", "/webjars/**").permitAll() //Aqui le decimos que permita las carpetas de stylos y js para que sean publicos
+        http.csrf().disable().authorizeRequests().antMatchers("/login2","/login3", "/",
+                "/images/**", "/login", "/css/**", "/js/**","/vendors/**","/build/**", "/webjars/**").permitAll() //Aqui le decimos que permita las carpetas de stylos y js para que sean publicos
         		.anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll().
@@ -77,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 logout().
                 logoutSuccessUrl("/login?logout").
                 deleteCookies("JSESSIONID").
-                and().addFilterAfter(aclFilter(), BasicAuthenticationFilter.class).
+                and().
                 sessionManagement().
                 maximumSessions(1).
                 maxSessionsPreventsLogin(false).//El segundo saca al primero
@@ -99,7 +106,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private AclFilter aclFilter() {
-        return new AclFilter();
+        return new AclFilter(permisoService);
     }
 
 }

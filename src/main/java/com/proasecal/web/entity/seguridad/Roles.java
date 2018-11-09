@@ -28,10 +28,9 @@ public class Roles {
     private long idRoles;
 
 
-    @Column(name="v_nombre_rol")
+    @Column(name="v_nombre_rol",unique=true)
     @NotNull
     private String nombreRol;
-
 
     @Column(name="v_descripcion")
     private String descripcion;
@@ -43,13 +42,16 @@ public class Roles {
     @Column(name = "b_estado")
     private Boolean estado = true;
 
+    @Column(name = "b_cod_proasecal")
+    private Boolean codigoProasecal = false;
+
     @ManyToMany(mappedBy = "rolesList")
     private List<Usuarios> usuariosList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "listRoles")
+    @ManyToMany(mappedBy = "listRoles", fetch=FetchType.EAGER)
     private List<Permisos> permisosList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "rolesList")
+    @ManyToMany(mappedBy = "rolesList",fetch=FetchType.EAGER)
     private List<Modulos> modulosList = new ArrayList<>();
 
     public long getIdRoles() {
@@ -107,5 +109,21 @@ public class Roles {
 
     public void setUsuariosList(List<Usuarios> usuariosList) {
         this.usuariosList = usuariosList;
+    }
+
+    public List<Modulos> getModulosList() {
+        return modulosList;
+    }
+
+    public void setModulosList(List<Modulos> modulosList) {
+        this.modulosList = modulosList;
+    }
+
+    public Boolean getCodigoProasecal() {
+        return codigoProasecal;
+    }
+
+    public void setCodigoProasecal(Boolean codigoProasecal) {
+        this.codigoProasecal = codigoProasecal;
     }
 }

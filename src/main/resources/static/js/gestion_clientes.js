@@ -4,7 +4,7 @@
             source: function (request, response) {
                 var desPais = $('#desPais').val();
                 $.ajax({
-                    url: '/restC/autoCompPais/' + desPais,
+                    url: '/rest/autoCompPais/' + desPais,
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (data) {
@@ -29,16 +29,14 @@
     function updateComboIdPais(idPais) {
 
         $("#idTipoPais").load('/gestionClientes/idTipoPais', 'idPais.nombrePais='+idPais+'');
-        $("#idDepartamento").load('/gestionClientes/obtDepartamentos', 'idPais.nombrePais='+idPais+'');
+        $("#idDepartamentos").load('/gestionClientes/obtDepartamentos', 'idPais.nombrePais='+idPais+'');
 
-
-       /* $(function() {
-            $("#idTipoPais").load('/ajax/brands', $("#desPais").serialize());
-            $('#desPais').on('change', function() {
-                $("#idTipoPais").load('/ajax/brands', $("#desPais").serialize());
-            });
-        });*/
     }
+
+    $( "#idDepartamentos" ).change(function() {
+        $("#idCiudad").load('/gestionClientes/obtCiudades', 'idDepartamento='+$( "#idDepartamentos" ).val()+'');
+    });
+
 
    // old works
 /*    function updateComboIdPais(idPais) {

@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +13,30 @@ import java.util.Set;
 @Table(name = "PERMISOS")
 public class Permisos {
 
+    public Permisos(Long idPermisos){
+        this.idPermisos = idPermisos;
+    }
+
+
+    public Permisos(String descripcion,
+                    String nombrePermiso,
+                    String url,
+                    Modulos idModulos,
+                    Permisos permisos,
+                    Set<Roles> listRoles){
+        this.idPermisos = idPermisos;
+        this.descripcion = descripcion;
+        this.nombrePermiso = nombrePermiso;
+        this.url = url;
+        this.idModulos = idModulos;
+        this.listRoles = listRoles;
+        this.permisos = permisos;
+
+    }
+
+
+    public Permisos() {
+    }
 
     @GenericGenerator(
             name = "permisosGenerator",
@@ -40,9 +66,10 @@ public class Permisos {
 //DEPENDENCIAS
     @ManyToOne
     @JoinColumn(name = "id_modulos")
+    @Null
     private Modulos idModulos;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="ROLES_PERMISOS", joinColumns=@JoinColumn(name="id_permisos"), inverseJoinColumns=@JoinColumn(name="id_roles"))
     private Set<Roles> listRoles;
 
@@ -116,4 +143,5 @@ public class Permisos {
     public void setPermisosList(List<Permisos> permisosList) {
         this.permisosList = permisosList;
     }
+
 }

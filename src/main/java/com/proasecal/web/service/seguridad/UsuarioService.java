@@ -28,4 +28,13 @@ public class UsuarioService {
     public void save(Usuarios usuarios){
         usuariosRepository.save(usuarios);
     }
+
+
+    public Boolean validarUsuarioExistente(String nombreUsuario){
+        return usuariosRepository.existsByNombreUsuario(nombreUsuario);
+    }
+
+    public Boolean validarCodProasecalExistente(Integer codigoProasecal){
+        return usuariosRepository.existsByCodProasecal(codigoProasecal);
+    }
 }

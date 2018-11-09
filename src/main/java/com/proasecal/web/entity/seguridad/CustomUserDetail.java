@@ -19,7 +19,7 @@ public class CustomUserDetail extends Usuarios implements UserDetails{
 		// TODO Auto-generated method stub
 		return getRolesList()
 				.stream()
-				.map(role -> new SimpleGrantedAuthority(role.getNombreRol()))
+				.map(role -> new SimpleGrantedAuthority("ROLE_"+role.getNombreRol()))
 				.collect(Collectors.toList());
 	}
 	

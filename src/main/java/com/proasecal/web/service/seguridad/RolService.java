@@ -29,5 +29,18 @@ public class RolService {
         rolesRepository.save(roles);
     }
 
+    public Boolean validarSiExisteRol(String nombreRol){
+        return rolesRepository.existsByNombreRol(nombreRol);
+    }
+
+    public Roles obtenerPorNombreRol(String nombreRol){
+        return rolesRepository.findByNombreRol(nombreRol);
+    }
+
+    public Boolean validarSiExisteRolParaLab(){
+        return rolesRepository.existsByCodigoProasecalIsTrue();
+    }
+
+
 
 }

@@ -32,5 +32,18 @@ public class PermisoService {
     public List<Permisos> obtenerPermisosXRol(Roles roles){
         return permisoRepository.findAllByListRoles(roles);
     }
+    
+    public List<Permisos> all(){
+    	return permisoRepository.findAll();
+    }
+
+
+    public void guardarPermisos(List<Permisos> permisosList){
+        permisoRepository.saveAll(permisosList);
+    }
+
+    public Permisos obtenerPermisosPorUrl(String url){
+        return permisoRepository.findByUrl(url);
+    }
 
 }
